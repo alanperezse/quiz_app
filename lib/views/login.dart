@@ -47,9 +47,9 @@ class _LoginScreen extends State<LoginScreen> {
                 children: [
                   CupertinoTextFormFieldRow(
                     textAlign: TextAlign.end,
-                    prefix: const Text('Email'),
+                    prefix: const Text('Username'),
                     textInputAction: TextInputAction.next,
-                    placeholder: 'username@email.com',
+                    placeholder: 'username',
                     validator: _userNameValidator,
                     onSaved: (val) {
                       _loginData.username = val!;

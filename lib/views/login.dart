@@ -59,7 +59,7 @@ class _LoginScreen extends State<LoginScreen> {
                     textAlign: TextAlign.end,
                     obscureText: true,
                     prefix: const Text('PIN'),
-                    textInputAction: TextInputAction.next,
+                    textInputAction: TextInputAction.done,
                     placeholder: '****',
                     validator: _pinValidator,
                     onSaved: (val) {

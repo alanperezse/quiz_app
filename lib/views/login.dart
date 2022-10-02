@@ -7,7 +7,6 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreen();
 }
 
-
 class _LoginScreen extends State<LoginScreen> {
   final LoginData _loginData = LoginData();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -47,6 +46,7 @@ class _LoginScreen extends State<LoginScreen> {
                 margin: const EdgeInsets.all(30.0),
                 children: [
                   CupertinoTextFormFieldRow(
+                    textAlign: TextAlign.end,
                     prefix: const Text('Email'),
                     textInputAction: TextInputAction.next,
                     placeholder: 'alanperezeptx@gmail.com',
@@ -56,10 +56,11 @@ class _LoginScreen extends State<LoginScreen> {
                     },
                   ),
                   CupertinoTextFormFieldRow(
+                    textAlign: TextAlign.end,
                     obscureText: true,
                     prefix: const Text('PIN'),
                     textInputAction: TextInputAction.next,
-                    placeholder: 'alanperezeptx@gmail.com',
+                    placeholder: '****',
                     validator: _pinValidator,
                     onSaved: (val) {
                       _loginData.username = val!;

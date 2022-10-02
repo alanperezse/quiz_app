@@ -49,7 +49,7 @@ class _LoginScreen extends State<LoginScreen> {
                     textAlign: TextAlign.end,
                     prefix: const Text('Email'),
                     textInputAction: TextInputAction.next,
-                    placeholder: 'alanperezeptx@gmail.com',
+                    placeholder: 'username@email.com',
                     validator: _userNameValidator,
                     onSaved: (val) {
                       _loginData.username = val!;

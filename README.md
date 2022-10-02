@@ -1,16 +1,8 @@
-# quiz_app
+# Flutter Quiz app
 
-A new Flutter project.
+This project is a work in progress. Once finished, it should allow a user to select a random subset of Computer Science related questions to answer. This questions are retrieved from the UTEP server.
 
-## Getting Started
+For this project, I decided to go for the Cupertino style widgets.
 
-This project is a starting point for a Flutter application.
+<img width="472" alt="Screen Shot 2022-10-02 at 5 46 29 PM" src="https://user-images.githubusercontent.com/79385309/193481673-48de5d8d-b546-4978-9411-2bfaff060bcd.png">
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

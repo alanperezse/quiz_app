@@ -12,6 +12,26 @@ class _LoginScreen extends State<LoginScreen> {
   final LoginData _loginData = LoginData();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  String? _userNameValidator(String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Please enter your username';
+    }
+    return null;
+  }
+
+  String? _pinValidator(String? val) {
+    if (val == null || val.length != 4) {
+      return 'PIN must be exactly 4 digits';
+    }
+    return null;
+  }
+
+  void _submit() {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -23,19 +43,14 @@ class _LoginScreen extends State<LoginScreen> {
           key: _formKey,
           child: ListView(
             children: [
-              CupertinoFormSection(
+              CupertinoFormSection.insetGrouped(
                 margin: const EdgeInsets.all(30.0),
                 children: [
                   CupertinoTextFormFieldRow(
                     prefix: const Text('Email'),
                     textInputAction: TextInputAction.next,
                     placeholder: 'alanperezeptx@gmail.com',
-                    validator: (String? val) {
-                      if (val == null || val.isEmpty) {
-                        return 'Please enter your username';
-                      }
-                      return null;
-                    },
+                    validator: _userNameValidator,
                     onSaved: (val) {
                       _loginData.username = val!;
                     },
@@ -45,12 +60,7 @@ class _LoginScreen extends State<LoginScreen> {
                     prefix: const Text('PIN'),
                     textInputAction: TextInputAction.next,
                     placeholder: 'alanperezeptx@gmail.com',
-                    validator: (String? val) {
-                      if (val == null || val.length != 4) {
-                        return 'PIN must be exactly 4 digits';
-                      }
-                      return null;
-                    },
+                    validator: _pinValidator,
                     onSaved: (val) {
                       _loginData.username = val!;
                     },
@@ -61,12 +71,8 @@ class _LoginScreen extends State<LoginScreen> {
                 margin: const EdgeInsets.symmetric(horizontal: 30),
                 width: double.infinity,
                 child: CupertinoButton.filled (
+                        onPressed: _submit,
                         child: const Text('Submit'),
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            _formKey.currentState!.save();
-                          }
-                        }
                       )
               )
             ],

@@ -63,7 +63,7 @@ class _LoginScreen extends State<LoginScreen> {
                     placeholder: '****',
                     validator: _pinValidator,
                     onSaved: (val) {
-                      _loginData.username = val!;
+                      _loginData.password = val!;
                     },
                   ),
                 ]

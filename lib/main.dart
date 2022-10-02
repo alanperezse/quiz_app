@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'views/homepage.dart';
+import 'views/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,9 +13,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const CupertinoApp(
       theme: CupertinoThemeData(
-        brightness: Brightness.dark
+        brightness: Brightness.dark,
+        primaryColor: CupertinoColors.systemPink
       ),
-      home: MyHomePage()
+      home: LoginScreen()
     );
   }
 }

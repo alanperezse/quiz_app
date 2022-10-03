@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import '../models/login_data.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -63,7 +64,7 @@ class _LoginScreen extends State<LoginScreen> {
                     placeholder: '****',
                     validator: _pinValidator,
                     onSaved: (val) {
-                      _loginData.password = val!;
+                      _loginData.pin = val!;
                     },
                   ),
                 ]
@@ -82,9 +83,4 @@ class _LoginScreen extends State<LoginScreen> {
       )
     );
   }
-}
-
-class LoginData {
-  String username = "";
-  String password = "";
 }

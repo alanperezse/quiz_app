@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import '../models/login_data.dart';
+import 'package:quiz_app/utilities/api_util.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -9,8 +10,31 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreen extends State<LoginScreen> {
-  final LoginData _loginData = LoginData();
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final _loginData = LoginData();
+  final _formKey = GlobalKey<FormState>();
+  final api = APIUtil();
+
+  // Prompts alert box
+  void _showAlertDialog(BuildContext context, String title, String body) {
+    showCupertinoModalPopup<void>(
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+        title: Text(title),
+        content: Text(body),
+        actions: <CupertinoDialogAction>[
+          CupertinoDialogAction(
+            /// This parameter indicates this action is the default,
+            /// and turns the action's text to bold text.
+            isDefaultAction: true,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('OK'),
+          )
+        ],
+      ),
+    );
+  }
 
   String? _userNameValidator(String? val) {
     if (val == null || val.isEmpty) {
@@ -26,9 +50,15 @@ class _LoginScreen extends State<LoginScreen> {
     return null;
   }
 
-  void _submit() {
+  void _submit() async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
+      var response = await api.validateUser(_loginData);
+      if (!response.response) {
+        _showAlertDialog(context, 'Error', response.reason!);
+      } else {
+        _showAlertDialog(context, 'Success', 'Login was successful');
+      }
     }
   }
 

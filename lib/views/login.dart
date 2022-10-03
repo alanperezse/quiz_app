@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import '../models/login_response.dart';
 import '../models/login_data.dart';
 import 'package:quiz_app/utilities/api_util.dart';
 
@@ -53,12 +54,11 @@ class _LoginScreen extends State<LoginScreen> {
   void _submit() async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      var response = await api.validateUser(_loginData);
-      if (!response.response) {
-        _showAlertDialog(context, 'Error', response.reason!);
-      } else {
+      api.validateUser(_loginData, (LoginResponse response) {
         _showAlertDialog(context, 'Success', 'Login was successful');
-      }
+      }, (LoginResponse response) {
+        _showAlertDialog(context, 'Error', response.reason!);
+      });
     }
   }
 

@@ -14,6 +14,7 @@ class _LoginScreen extends State<LoginScreen> {
   final _loginData = LoginData();
   final _formKey = GlobalKey<FormState>();
   final api = APIUtil();
+  var _isButtonDisabled = false;
 
   // Prompts alert box
   void _showAlertDialog(BuildContext context, String title, String body) {
@@ -54,10 +55,13 @@ class _LoginScreen extends State<LoginScreen> {
   void _submit() async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
+      setState(() => _isButtonDisabled = true);
       api.validateUser(_loginData, (LoginResponse response) {
         _showAlertDialog(context, 'Success', 'Login was successful');
+        setState(() => _isButtonDisabled = false);
       }, (LoginResponse response) {
         _showAlertDialog(context, 'Error', response.reason!);
+        setState(() => _isButtonDisabled = false);
       });
     }
   }
@@ -103,7 +107,7 @@ class _LoginScreen extends State<LoginScreen> {
                 margin: const EdgeInsets.symmetric(horizontal: 30),
                 width: double.infinity,
                 child: CupertinoButton.filled (
-                        onPressed: _submit,
+                        onPressed: _isButtonDisabled ? () {} : _submit,
                         child: const Text('Submit'),
                       )
               )

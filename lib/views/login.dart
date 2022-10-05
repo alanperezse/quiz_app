@@ -13,7 +13,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreen extends State<LoginScreen> {
   final _loginData = LoginData();
   final _formKey = GlobalKey<FormState>();
-  final api = APIUtil();
+  final _api = APIUtil();
   var _isButtonDisabled = false;
 
   // Prompts alert box
@@ -56,7 +56,7 @@ class _LoginScreen extends State<LoginScreen> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       setState(() => _isButtonDisabled = true);
-      api.validateUser(_loginData, (LoginResponse response) {
+      _api.validateUser(_loginData, (LoginResponse response) {
         _showAlertDialog(context, 'Success', 'Login was successful');
         setState(() => _isButtonDisabled = false);
       }, (LoginResponse response) {

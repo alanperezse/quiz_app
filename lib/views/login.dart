@@ -91,6 +91,7 @@ class _LoginScreen extends State<LoginScreen> {
                     },
                   ),
                   CupertinoTextFormFieldRow(
+                    keyboardType: TextInputType.number,
                     textAlign: TextAlign.end,
                     obscureText: true,
                     prefix: const Text('PIN'),

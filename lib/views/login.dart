@@ -108,9 +108,9 @@ class _LoginScreen extends State<LoginScreen> {
                 margin: const EdgeInsets.symmetric(horizontal: 30),
                 width: double.infinity,
                 child: CupertinoButton.filled (
-                        onPressed: _isButtonDisabled ? () {} : _submit,
-                        child: const Text('Submit'),
-                      )
+                  onPressed: _isButtonDisabled ? () {} : _submit,
+                  child: const Text('Submit'),
+                )
               )
             ],
           )

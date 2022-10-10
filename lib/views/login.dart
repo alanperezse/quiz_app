@@ -109,7 +109,9 @@ class _LoginScreen extends State<LoginScreen> {
                 width: double.infinity,
                 child: CupertinoButton.filled (
                   onPressed: _isButtonDisabled ? () {} : _submit,
-                  child: const Text('Submit'),
+                  child: _isButtonDisabled ?
+                    const CupertinoActivityIndicator() :
+                    const Text('Submit'),
                 )
               )
             ],

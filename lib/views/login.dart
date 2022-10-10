@@ -56,10 +56,10 @@ class _LoginScreen extends State<LoginScreen> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       setState(() => _isButtonDisabled = true);
-      _api.validateUser(_loginData, (LoginResponse response) {
-        _showAlertDialog(context, 'Success', 'Login was successful');
+      _api.validateUser(_loginData, (LoginResponse response) { // On success
+        Navigator.pushReplacementNamed(context, '/home');
         setState(() => _isButtonDisabled = false);
-      }, (LoginResponse response) {
+      }, (LoginResponse response) { // On failure
         _showAlertDialog(context, 'Error', response.reason!);
         setState(() => _isButtonDisabled = false);
       });

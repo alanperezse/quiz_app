@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:quiz_app/views/homepage.dart';
 import 'views/login.dart';
 
 void main() {
@@ -11,12 +12,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const CupertinoApp(
-      theme: CupertinoThemeData(
+    return CupertinoApp(
+      theme: const CupertinoThemeData(
         brightness: Brightness.dark,
         primaryColor: CupertinoColors.systemPink
       ),
-      home: LoginScreen()
+      routes: {
+        '/': (context) => const LoginScreen(),
+        '/home': (context) => const MyHomePage(),
+      },
     );
   }
 }

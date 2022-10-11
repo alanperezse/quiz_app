@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/models/login_data.dart';
+import 'package:quiz_app/models/question_pool.dart';
 
 class MyHomePage extends StatelessWidget {
   final LoginData loginData;
+  final QuestionPool questionPool = const QuestionPool();
 
   const MyHomePage({super.key, required this.loginData});
 
@@ -20,7 +22,7 @@ class MyHomePage extends StatelessWidget {
               children: [
                 Container(
                   margin: const EdgeInsets.all(30),
-                  child: QuizInfoWidget(loginData: loginData),
+                  child: QuizInfoWidget(loginData: loginData, questionPool: questionPool),
                 )
               ]
             )
@@ -33,8 +35,9 @@ class MyHomePage extends StatelessWidget {
 
 class QuizInfoWidget extends StatefulWidget {
   final LoginData loginData;
+  final QuestionPool questionPool;
 
-  const QuizInfoWidget({Key? key, required this.loginData}) : super(key: key);
+  const QuizInfoWidget({Key? key, required this.loginData, required this.questionPool}) : super(key: key);
 
   @override
   State<QuizInfoWidget> createState() => _QuizInfoWidget();
@@ -58,7 +61,7 @@ class _QuizInfoWidget extends State<QuizInfoWidget> {
           ),
           Container(
             child: Text(
-              '139',
+              '${widget.questionPool.length}',
               style: TextStyle(fontFamily: 'Alkalami', fontSize: 60)
             ),
           ),

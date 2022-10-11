@@ -13,21 +13,13 @@ class MyHomePage extends StatelessWidget {
             largeTitle: Text('Home'),
           ),
           SliverFillRemaining(
-            child: Container(
-              margin: const EdgeInsets.all(30),
-              child: Column(
-                children: [
-                  QuizInfoWidget(),
-                  Container(
-                    width: double.infinity,
-                    margin: EdgeInsets.only(top: 30),
-                    child: CupertinoButton.filled(
-                      onPressed: () {},
-                      child: Text('Take quiz'),
-                  )
-                  )
-                ]
-              )
+            child: Column(
+              children: [
+                Container(
+                  margin: const EdgeInsets.all(30),
+                  child: QuizInfoWidget(),
+                )
+              ]
             )
           )
         ],
@@ -47,41 +39,36 @@ class _QuizInfoWidget extends State<QuizInfoWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.all(25),
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(10)),
         color: Colors.grey[900]
       ),
-      child: 
-      IntrinsicHeight(child: 
-            Row(
-        children: <Widget>[
-          Expanded(
-              child: Text(
-                '139\nQuestions',
-                textAlign: TextAlign.center,
-            ),
-          ),
-          VerticalDivider(
-            width: 10,
-            indent: 5,
-            endIndent: 5,
-            color: Colors.grey,
-            thickness: 1,
-          ),
-          CupertinoButton(
-            child: Column(
-              children: const [
-                Icon(
-                  CupertinoIcons.arrow_clockwise
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Container(
+                padding: EdgeInsets.only(right: 20),
+                child: Text(
+                  '139',
+                  style: TextStyle(fontFamily: 'Alkalami', fontSize: 60)
                 ),
-                Text('Update')
-              ],
-            ),
-            onPressed: () {}
+              ),
+              Text(
+                'Questions\nfound',
+                style: TextStyle(fontFamily: 'Alkalami', fontSize: 20, color: Colors.grey),
+                textAlign: TextAlign.start,
+              )
+            ],
+          ),
+          Container(
+            width: double.infinity,
+            child: CupertinoButton.filled(
+              child: Text('Take quiz'), onPressed: () {}
+            )
           )
-        ]
-      ),
+        ],
       )
     );
   }

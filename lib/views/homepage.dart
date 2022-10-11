@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz_app/models/login_data.dart';
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+  final LoginData loginData;
+
+  const MyHomePage({super.key, required this.loginData});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +20,7 @@ class MyHomePage extends StatelessWidget {
               children: [
                 Container(
                   margin: const EdgeInsets.all(30),
-                  child: QuizInfoWidget(),
+                  child: QuizInfoWidget(loginData: loginData),
                 )
               ]
             )
@@ -29,7 +32,9 @@ class MyHomePage extends StatelessWidget {
 }
 
 class QuizInfoWidget extends StatefulWidget {
-  const QuizInfoWidget({Key? key}) : super(key: key);
+  final LoginData loginData;
+
+  const QuizInfoWidget({Key? key, required this.loginData}) : super(key: key);
 
   @override
   State<QuizInfoWidget> createState() => _QuizInfoWidget();

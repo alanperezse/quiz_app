@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:quiz_app/views/homepage.dart';
 import '../models/login_response.dart';
 import '../models/login_data.dart';
 import 'package:quiz_app/utilities/api_util.dart';
@@ -57,7 +58,10 @@ class _LoginScreen extends State<LoginScreen> {
       _formKey.currentState!.save();
       setState(() => _isButtonDisabled = true);
       _api.validateUser(_loginData, (LoginResponse response) { // On success
-        Navigator.pushReplacementNamed(context, '/home');
+        Navigator.pushReplacement(
+          context,
+          CupertinoPageRoute(builder: (BuildContext context) => MyHomePage(loginData: _loginData,))
+        );
         setState(() => _isButtonDisabled = false);
       }, (LoginResponse response) { // On failure
         _showAlertDialog(context, 'Error', response.reason!);

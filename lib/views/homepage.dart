@@ -46,21 +46,16 @@ class _QuizInfoWidget extends State<QuizInfoWidget> {
       ),
       child: Column(
         children: [
-          Row(
-            children: [
-              Container(
-                padding: EdgeInsets.only(right: 20),
-                child: Text(
-                  '139',
-                  style: TextStyle(fontFamily: 'Alkalami', fontSize: 60)
-                ),
-              ),
-              Text(
-                'Questions\nfound',
-                style: TextStyle(fontFamily: 'Alkalami', fontSize: 20, color: Colors.grey),
-                textAlign: TextAlign.start,
-              )
-            ],
+          Text(
+            'Questions found',
+            style: TextStyle(fontFamily: 'Alkalami', fontSize: 20, color: Colors.grey),
+            textAlign: TextAlign.start,
+          ),
+          Container(
+            child: Text(
+              '139',
+              style: TextStyle(fontFamily: 'Alkalami', fontSize: 60)
+            ),
           ),
           Container(
             width: double.infinity,

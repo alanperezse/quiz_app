@@ -6,8 +6,6 @@ import 'package:quiz_app/utilities/api_util.dart';
 
 class MyHomePage extends StatelessWidget {
   final LoginData loginData;
-  final QuestionPool questionPool = const QuestionPool();
-
   const MyHomePage({super.key, required this.loginData});
 
   @override
@@ -23,7 +21,7 @@ class MyHomePage extends StatelessWidget {
               children: [
                 Container(
                   margin: const EdgeInsets.all(30),
-                  child: QuizInfoWidget(loginData: loginData, questionPool: questionPool),
+                  child: QuizInfoWidget(loginData: loginData),
                 )
               ]
             )
@@ -36,10 +34,9 @@ class MyHomePage extends StatelessWidget {
 
 class QuizInfoWidget extends StatefulWidget {
   final LoginData loginData;
-  final QuestionPool questionPool;
   final api = APIUtil();
 
-  QuizInfoWidget({Key? key, required this.loginData, required this.questionPool}) : super(key: key);
+  QuizInfoWidget({Key? key, required this.loginData}) : super(key: key);
 
   @override
   State<QuizInfoWidget> createState() => _QuizInfoWidget();

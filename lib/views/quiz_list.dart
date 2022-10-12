@@ -48,14 +48,14 @@ class QuizCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container (
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+      padding: const EdgeInsets.all(30),
       child: Row(
         children: [
           Icon(
             CupertinoIcons.circle,
             color: Colors.grey[800],
           ),
-          Icon(
+          const Icon(
             Icons.check_circle_outlined,
           ),
           const SizedBox(

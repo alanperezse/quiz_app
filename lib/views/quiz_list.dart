@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:quiz_app/models/question.dart';
 import 'package:quiz_app/models/quiz.dart';
 
 class QuizListScreen extends StatefulWidget {
@@ -26,9 +28,9 @@ class _QuizListScreen extends State<QuizListScreen> {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) {
-                return Text('$index');
+                return QuizCard(stem: widget.quiz.questions.toList()[index].stem, index: index + 1);
               },
-              childCount: widget.quiz.length
+              childCount: widget.quiz.length,
             )
           )
         ],
@@ -37,3 +39,43 @@ class _QuizListScreen extends State<QuizListScreen> {
   }
 }
 
+class QuizCard extends StatelessWidget {
+  final String stem;
+  final int index;
+
+  const QuizCard({Key? key, required this.stem, required this.index}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container (
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+      child: Row(
+        children: [
+          Icon(
+            CupertinoIcons.circle,
+            color: Colors.grey[800],
+          ),
+          Icon(
+            Icons.check_circle_outlined,
+          ),
+          const SizedBox(
+            width: 15,
+          ),
+          Flexible(
+            child: Text(
+              stem,
+              overflow: TextOverflow.ellipsis,
+            )
+          ),
+          const SizedBox(
+            width: 15,
+          ),
+          const Icon(
+            CupertinoIcons.forward,
+            size: 25
+          )
+        ]
+      )
+    );
+  }
+}

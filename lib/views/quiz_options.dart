@@ -13,7 +13,7 @@ class QuizOptionsScreen extends StatefulWidget {
 
 class _QuizOptionsScreen extends State<QuizOptionsScreen> {
   var _numQuestions;
-  late final _pickerOptions;
+  late final List<int> _pickerOptions;
 
   @override
   void initState() {
@@ -48,8 +48,9 @@ class _QuizOptionsScreen extends State<QuizOptionsScreen> {
     return CupertinoPageScaffold(
       child: CustomScrollView(
         slivers: [
-          const CupertinoSliverNavigationBar(
-            largeTitle: Text('Quiz Setup'),
+          CupertinoSliverNavigationBar(
+            largeTitle: const Text('Quiz Setup'),
+            trailing: CupertinoButton(child: const Text('Next'), onPressed: () {}),
           ),
           SliverFillRemaining(
             child: CupertinoFormSection(

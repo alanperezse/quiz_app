@@ -1,10 +1,13 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:quiz_app/models/question_pool.dart';
 import 'package:quiz_app/views/quiz_list.dart';
 
+import '../models/quiz.dart';
+
 class QuizOptionsScreen extends StatefulWidget {
-  final questionPool;
+  final QuestionPool questionPool;
 
   const QuizOptionsScreen({Key? key, required this.questionPool}) : super(key: key);
 
@@ -19,7 +22,7 @@ class _QuizOptionsScreen extends State<QuizOptionsScreen> {
   @override
   void initState() {
     super.initState();
-    _numQuestions = math.min(5, widget.questionPool.length as int);
+    _numQuestions = math.min(5, widget.questionPool.length);
     _pickerOptions = List<int>.generate(widget.questionPool.length, (index) => index + 1);
   }
 
@@ -58,7 +61,11 @@ class _QuizOptionsScreen extends State<QuizOptionsScreen> {
                 Navigator.pushReplacement(
                   context,
                   CupertinoPageRoute(
-                    builder: (BuildContext context) => QuizListScreen()
+                    builder: (BuildContext context) {
+                      final randomQuestions = widget.questionPool.selectRandomQuestions(_numQuestions);
+                      final quiz = Quiz(randomQuestions);
+                      return QuizListScreen(quiz: quiz);
+                    }
                   )
                 );
               }

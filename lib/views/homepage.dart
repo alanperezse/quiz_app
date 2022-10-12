@@ -93,7 +93,7 @@ class _QuizInfoWidget extends State<QuizInfoWidget> {
                   return CupertinoButton.filled(
                     onPressed: () => Navigator.push(
                       context,
-                      CupertinoPageRoute(builder: (BuildContext context) => QuizOptionsScreen(questionPool: snapshot.data,))
+                      CupertinoPageRoute(builder: (BuildContext context) => QuizOptionsScreen(questionPool: snapshot.data!,))
                     ),
                     child: const Text('Take quiz'),
                   );

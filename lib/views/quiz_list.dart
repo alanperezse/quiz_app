@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
+import 'package:quiz_app/models/quiz.dart';
 
 class QuizListScreen extends StatefulWidget {
-  const QuizListScreen({Key? key}) : super(key: key);
+  final Quiz quiz;
+  const QuizListScreen({Key? key, required this.quiz}) : super(key: key);
 
   @override
   State<QuizListScreen> createState() => _QuizListScreen();
@@ -21,11 +23,17 @@ class _QuizListScreen extends State<QuizListScreen> {
               onPressed: () {}
             ),
           ),
-          const SliverFillRemaining(
-            child: Text('Hello'),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                return Text('$index');
+              },
+              childCount: widget.quiz.length
+            )
           )
         ],
       )
     );
   }
 }
+

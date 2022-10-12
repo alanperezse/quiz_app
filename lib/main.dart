@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:quiz_app/views/login.dart';
-import 'views/login.dart';
 
 void main() {
   runApp(const MyApp());

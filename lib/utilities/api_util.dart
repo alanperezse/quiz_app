@@ -1,4 +1,5 @@
 import 'package:http/http.dart' as http;
+import 'package:quiz_app/models/question.dart';
 import 'package:quiz_app/models/question_pool.dart';
 import 'package:quiz_app/utilities/api_decoder.dart';
 import '../models/login_data.dart';
@@ -6,7 +7,7 @@ import '../models/login_data.dart';
 class APIUtil {
   static const String url = 'www.cs.utep.edu';
   static const String authenticatePath = '/cheon/cs4381/homework/quiz/login.php';
-  static const String quizPath = '/cheon/cs4381/homework/quiz/get.php?';
+  static const String quizPath = '/cheon/cs4381/homework/quiz/get.php';
   final _decoder = APIDecoder();
 
   void validateUser(LoginData loginData, Function onSuccess, Function onFailure) async {
@@ -24,7 +25,9 @@ class APIUtil {
     }
   }
 
-  void getQuestions(LoginData loginData, QuestionPool questionPool, Function onSuccess, Function onFailure) async {
+  Future<QuestionPool> getQuestions(LoginData loginData) async {
+    List<Question> questions = [];
+
     for(var i = 1; i < 100; i++) {
       var quizNum = _quizPostFix(i);
       try {
@@ -32,13 +35,24 @@ class APIUtil {
           Uri.https(url, quizPath, {
             'user': loginData.username,
             'pin': loginData.pin,
-            'quiz': quizNum
+            'quiz': 'quiz$quizNum'
           }
         ));
+
+        var newQuestions = _decoder.decodeQuiz(response);
+        if (newQuestions == null) {
+          break;
+        }
+
+        questions.addAll(newQuestions);
+
       } catch(e) {
+        print('Failure while retrieving quiz $quizNum, skipping for now.');
         print(e);
       }
     }
+    
+    return QuestionPool(questions);
   }
 
   /// Given a number in the range [0-99] inclusive, it returns

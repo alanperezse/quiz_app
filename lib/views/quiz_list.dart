@@ -47,34 +47,39 @@ class QuizCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container (
-      padding: const EdgeInsets.all(30),
-      child: Row(
-        children: [
-          Icon(
-            CupertinoIcons.circle,
-            color: Colors.grey[800],
-          ),
-          const Icon(
-            Icons.check_circle_outlined,
-          ),
-          const SizedBox(
-            width: 15,
-          ),
-          Flexible(
-            child: Text(
-              stem,
-              overflow: TextOverflow.ellipsis,
+    return CupertinoButton(
+      padding: EdgeInsets.zero,
+      onPressed: () => print('Hello'),
+      child: Container (
+        padding: const EdgeInsets.all(30),
+        child: Row(
+          children: [
+            Icon(
+              CupertinoIcons.circle,
+              color: Colors.grey[800],
+            ),
+            const Icon(
+              Icons.check_circle_outlined,
+            ),
+            const SizedBox(
+              width: 15,
+            ),
+            Flexible(
+              child: Text(
+                stem,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(color: Colors.white),
+              )
+            ),
+            const SizedBox(
+              width: 15,
+            ),
+            const Icon(
+              CupertinoIcons.forward,
+              size: 25
             )
-          ),
-          const SizedBox(
-            width: 15,
-          ),
-          const Icon(
-            CupertinoIcons.forward,
-            size: 25
-          )
-        ]
+          ]
+        )
       )
     );
   }

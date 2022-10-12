@@ -50,7 +50,11 @@ class _QuizOptionsScreen extends State<QuizOptionsScreen> {
         slivers: [
           CupertinoSliverNavigationBar(
             largeTitle: const Text('Quiz Setup'),
-            trailing: CupertinoButton(child: const Text('Next'), onPressed: () {}),
+            trailing: CupertinoButton(
+              padding: EdgeInsets.zero,
+              child: const Text('Next'),
+              onPressed: () {}
+            ),
           ),
           SliverFillRemaining(
             child: CupertinoFormSection(

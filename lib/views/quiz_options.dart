@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:quiz_app/views/quiz_list.dart';
 
 class QuizOptionsScreen extends StatefulWidget {
   final questionPool;
@@ -53,7 +54,14 @@ class _QuizOptionsScreen extends State<QuizOptionsScreen> {
             trailing: CupertinoButton(
               padding: EdgeInsets.zero,
               child: const Text('Next'),
-              onPressed: () {}
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  CupertinoPageRoute(
+                    builder: (BuildContext context) => QuizListScreen()
+                  )
+                );
+              }
             ),
           ),
           SliverFillRemaining(

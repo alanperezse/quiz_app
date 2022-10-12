@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/models/login_data.dart';
 import 'package:quiz_app/models/question_pool.dart';
 import 'package:quiz_app/utilities/api_util.dart';
+import 'package:quiz_app/views/quiz_options.dart';
 
 class MyHomePage extends StatelessWidget {
   final LoginData loginData;
@@ -90,7 +91,10 @@ class _QuizInfoWidget extends State<QuizInfoWidget> {
               builder: (BuildContext context, AsyncSnapshot<QuestionPool> snapshot) {
                 if(snapshot.hasData) {
                   return CupertinoButton.filled(
-                    onPressed: () {},
+                    onPressed: () => Navigator.push(
+                      context,
+                      CupertinoPageRoute(builder: (BuildContext context) => QuizOptionsScreen(questionPool: snapshot.data,))
+                    ),
                     child: const Text('Take quiz'),
                   );
                 } else {

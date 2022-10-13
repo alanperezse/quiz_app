@@ -38,10 +38,11 @@ class _QuestionScreen extends State<QuestionScreen> {
                 children: [
                   Expanded(
                     child: ListView(
+                      padding: EdgeInsets.zero,
                       children: [
                         Text(widget.quiz.questions.toList()[widget.index].stem),
                       ],
-                    ),
+                    )
                   ),
                   const SizedBox(
                     height: 20,

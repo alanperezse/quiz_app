@@ -12,6 +12,18 @@ class QuizListScreen extends StatefulWidget {
 }
 
 class _QuizListScreen extends State<QuizListScreen> {
+  void onNavigate(int index) {
+    Navigator.push(
+      context,
+      CupertinoPageRoute(
+          builder: (BuildContext context) => QuestionScreen(
+          quiz: widget.quiz,
+          index: index,
+        )
+      )
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -28,7 +40,11 @@ class _QuizListScreen extends State<QuizListScreen> {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) {
-                return QuizCard(stem: widget.quiz.questions.toList()[index].stem, index: index + 1);
+                return QuizCard(
+                  stem: widget.quiz.questions.toList()[index].stem,
+                  index: index + 1,
+                  onTap: () {onNavigate(index);},
+                );
               },
               childCount: widget.quiz.length,
             )
@@ -42,8 +58,9 @@ class _QuizListScreen extends State<QuizListScreen> {
 class QuizCard extends StatelessWidget {
   final String stem;
   final int index;
+  final VoidCallback onTap;
 
-  const QuizCard({Key? key, required this.stem, required this.index}) : super(key: key);
+  const QuizCard({Key? key, required this.stem, required this.index, required this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -56,14 +73,7 @@ class QuizCard extends StatelessWidget {
           )
         ]
       ),
-      onTap: () => {
-        Navigator.push(
-          context,
-          CupertinoPageRoute(
-            builder: (BuildContext context) => QuestionScreen()
-          )
-        )
-      },
+      onTap: onTap,
       leading: const Icon(
         CupertinoIcons.check_mark_circled
       ),

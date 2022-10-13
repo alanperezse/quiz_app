@@ -19,7 +19,6 @@ class _QuestionScreen extends State<QuestionScreen> {
 
   void onPrevious() {
     setState(() {
-      print(widget.index);
       widget.index -= 1;
     });
   }
@@ -34,7 +33,7 @@ class _QuestionScreen extends State<QuestionScreen> {
           ),
           SliverFillRemaining(
             child: Container(
-              margin: EdgeInsets.all(30),
+              margin: const EdgeInsets.all(30),
               child: Column(
                 children: [
                   Expanded(

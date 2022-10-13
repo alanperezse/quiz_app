@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:cupertino_list_tile/cupertino_list_tile.dart';
+import 'package:quiz_app/views/question.dart';
 import 'package:quiz_app/models/quiz.dart';
 
 class QuizListScreen extends StatefulWidget {
@@ -55,13 +56,13 @@ class QuizCard extends StatelessWidget {
           )
         ]
       ),
-      onTap: () => () {
-        // Navigator.push(
-        //   context,
-        //   CupertinoPageRoute(
-        //     builder: (BuildContext context) => QuestionScreen()
-        //   )
-        // );
+      onTap: () => {
+        Navigator.push(
+          context,
+          CupertinoPageRoute(
+            builder: (BuildContext context) => QuestionScreen()
+          )
+        )
       },
       leading: const Icon(
         CupertinoIcons.check_mark_circled

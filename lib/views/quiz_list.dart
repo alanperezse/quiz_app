@@ -1,6 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:quiz_app/models/question.dart';
 import 'package:cupertino_list_tile/cupertino_list_tile.dart';
 import 'package:quiz_app/models/quiz.dart';
 
@@ -50,10 +48,23 @@ class QuizCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoListTile(
       title: Text('Question $index'),
-      subtitle: Flexible(child: Text(stem, overflow: TextOverflow.ellipsis),),
-      onTap: () => () {/** TODO: Jump to new screen*/},
+      subtitle: Row(
+        children: [
+          Flexible(
+            child: Text(stem, overflow: TextOverflow.ellipsis)
+          )
+        ]
+      ),
+      onTap: () => () {
+        // Navigator.push(
+        //   context,
+        //   CupertinoPageRoute(
+        //     builder: (BuildContext context) => QuestionScreen()
+        //   )
+        // );
+      },
       leading: const Icon(
-        CupertinoIcons.circle
+        CupertinoIcons.check_mark_circled
       ),
       trailing: const Icon(
         CupertinoIcons.forward

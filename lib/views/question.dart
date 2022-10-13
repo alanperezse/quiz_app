@@ -44,24 +44,24 @@ class _QuestionScreen extends State<QuestionScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  Container(
+                  SizedBox(
                     width: double.infinity,
                     child: CupertinoButton.filled(
-                      child: Text('Next'),
-                      onPressed: widget.index >= widget.quiz.length - 1 ? null : onNext
+                      onPressed: widget.index >= widget.quiz.length - 1 ? null : onNext,
+                      child: const Text('Next'),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  Container(
+                  SizedBox(
                     width: double.infinity,
                     child: CupertinoButton(
-                      child: Text('Previous'),
-                      onPressed: widget.index <= 0 ? null : onPrevious
+                      onPressed: widget.index <= 0 ? null : onPrevious,
+                      child: const Text('Previous'),
                     ),
                   ),
                 ],

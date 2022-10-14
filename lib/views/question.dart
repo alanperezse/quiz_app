@@ -2,24 +2,32 @@ import 'package:flutter/cupertino.dart';
 import 'package:quiz_app/models/quiz.dart';
 
 class QuestionScreen extends StatefulWidget {
-  var index = 0;
+  final int index;
   final Quiz quiz;
-  QuestionScreen({Key? key, required this.index, required this.quiz}) : super(key: key);
+  const QuestionScreen({Key? key, required this.index, required this.quiz}) : super(key: key);
   
   @override
   State<QuestionScreen> createState() => _QuestionScreen();
 }
 
 class _QuestionScreen extends State<QuestionScreen> {
+  int? index;
+
+  @override
+  void initState() {
+    super.initState();
+    index = widget.index;
+  }
+
   void onNext() {
     setState(() {
-      widget.index += 1;
+      index = index! + 1;
     });
   }
 
   void onPrevious() {
     setState(() {
-      widget.index -= 1;
+      index = index! - 1;
     });
   }
 
@@ -29,7 +37,7 @@ class _QuestionScreen extends State<QuestionScreen> {
       child: CustomScrollView(
         slivers: [
           CupertinoSliverNavigationBar(
-            largeTitle: Text('Question ${widget.index + 1}')
+            largeTitle: Text('Question ${index! + 1}')
           ),
           SliverFillRemaining(
             child: Container(
@@ -50,7 +58,7 @@ class _QuestionScreen extends State<QuestionScreen> {
                   SizedBox(
                     width: double.infinity,
                     child: CupertinoButton.filled(
-                      onPressed: widget.index >= widget.quiz.length - 1 ? null : onNext,
+                      onPressed: index! >= widget.quiz.length - 1 ? null : onNext,
                       child: const Text('Next'),
                     ),
                   ),
@@ -60,7 +68,7 @@ class _QuestionScreen extends State<QuestionScreen> {
                   SizedBox(
                     width: double.infinity,
                     child: CupertinoButton(
-                      onPressed: widget.index <= 0 ? null : onPrevious,
+                      onPressed: index! <= 0 ? null : onPrevious,
                       child: const Text('Previous'),
                     ),
                   ),

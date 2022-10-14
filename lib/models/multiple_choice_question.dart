@@ -7,7 +7,7 @@ import 'package:quiz_app/models/score.dart';
 /// provided alternatives.
 class MultipleChoiceQuestion extends Question {
   final String _stem;
-  final Iterable _choices;
+  final List _choices;
   final num _answer;
   /// User provided answer.
   num? userAnswer;
@@ -15,7 +15,7 @@ class MultipleChoiceQuestion extends Question {
   /// Immutable list of strings detailing
   /// possible answers to the prompt. Only
   /// one of them is correct.
-  Iterable get choices => _choices;
+  List get choices => _choices;
   /// Correct answer.
   num get answer => _answer;
 

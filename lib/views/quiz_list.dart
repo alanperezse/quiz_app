@@ -41,7 +41,7 @@ class _QuizListScreen extends State<QuizListScreen> {
             delegate: SliverChildBuilderDelegate(
               (context, index) {
                 return QuizCard(
-                  stem: widget.quiz.questions.toList()[index].stem,
+                  stem: widget.quiz.questions[index].stem,
                   index: index + 1,
                   onTap: () {onNavigate(index);},
                 );

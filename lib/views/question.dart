@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:quiz_app/models/fill_in_question.dart';
 import 'package:quiz_app/models/multiple_choice_question.dart';
 import 'package:quiz_app/models/quiz.dart';
@@ -116,8 +117,50 @@ class MultipleChoiceAnswer extends StatefulWidget {
 }
 
 class _MultipleChoiceAnswer extends State<MultipleChoiceAnswer> {
+  void onRadioChanged(num i) {
+    setState(() {
+      widget.question.userAnswer = i;
+    });
+  }
+
+  List<CupertinoButton> radioOptions() {
+    List<CupertinoButton> rtn = [];
+
+    for (var i = 0; i < widget.question.choices.length; i++) {
+      rtn.add(
+        CupertinoButton(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          alignment: Alignment.centerLeft,
+          child: Row(
+            children: [
+              Icon(
+                widget.question.userAnswer == i ?
+                  CupertinoIcons.check_mark_circled :
+                  CupertinoIcons.circle
+              ),
+              const SizedBox(
+                width: 20,
+              ),
+              Expanded(
+                child: Text(
+                  widget.question.choices[i],
+                  style: TextStyle(color: Colors.grey),
+                ),
+              )
+            ],
+          ),
+          onPressed: () => onRadioChanged(i)
+        )
+      );
+    }
+
+    return rtn;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Text('Multiple choice');
+    return Column(
+      children: radioOptions()
+    );
   }
 }

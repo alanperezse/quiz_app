@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:quiz_app/models/fill_in_question.dart';
+import 'package:quiz_app/models/multiple_choice_question.dart';
 import 'package:quiz_app/models/quiz.dart';
 
 class QuestionScreen extends StatefulWidget {
@@ -48,7 +50,13 @@ class _QuestionScreen extends State<QuestionScreen> {
                     child: ListView(
                       padding: EdgeInsets.zero,
                       children: [
-                        Text(widget.quiz.questions.toList()[widget.index].stem),
+                        Text(widget.quiz.questions[index!].stem),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        widget.quiz.questions[index!].runtimeType == FillInQuestion ? 
+                          FillInAnswer(question: widget.quiz.questions[index!] as FillInQuestion) :
+                          MultipleChoiceAnswer(question: widget.quiz.questions[index!] as MultipleChoiceQuestion)
                       ],
                     )
                   ),
@@ -80,4 +88,36 @@ class _QuestionScreen extends State<QuestionScreen> {
       )
     );
   } 
+}
+
+class FillInAnswer extends StatefulWidget {
+  final FillInQuestion question;
+
+  const FillInAnswer({Key? key, required this.question}) : super(key: key);
+
+  @override
+  State<FillInAnswer> createState() => _FillInAnswer();
+}
+
+class _FillInAnswer extends State<FillInAnswer> {
+  @override
+  Widget build(BuildContext context) {
+    return const Text('Fill in');
+  }
+}
+
+class MultipleChoiceAnswer extends StatefulWidget {
+  final MultipleChoiceQuestion question;
+
+  const MultipleChoiceAnswer({Key? key, required this.question}) : super(key: key);
+ 
+  @override
+  State<MultipleChoiceAnswer> createState() => _MultipleChoiceAnswer();
+}
+
+class _MultipleChoiceAnswer extends State<MultipleChoiceAnswer> {
+  @override
+  Widget build(BuildContext context) {
+    return const Text('Multiple choice');
+  }
 }

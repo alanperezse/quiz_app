@@ -5,10 +5,10 @@ import 'score.dart';
 /// Contains a set of questions that the user must
 /// answer for evaluation.
 class Quiz {
-  final Iterable<Question> _questions;
+  final List<Question> _questions;
 
   /// Immutable set of questions.
-  Iterable<Question> get questions => _questions;
+  List<Question> get questions => _questions;
 
   /// Number of questions.
   int get length => questions.length;

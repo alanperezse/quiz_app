@@ -58,7 +58,7 @@ class _QuizOptionsScreen extends State<QuizOptionsScreen> {
               padding: EdgeInsets.zero,
               child: const Text('Next'),
               onPressed: () {
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
                   CupertinoPageRoute(
                     builder: (BuildContext context) {

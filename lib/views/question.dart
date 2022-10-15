@@ -109,6 +109,12 @@ class _FillInAnswer extends State<FillInAnswer> {
     initTextController();
   }
 
+  @override
+  void dispose() {
+    disposeTextController();
+    super.dispose();
+  }
+
   void initTextController() {
     _textController = TextEditingController(
       text: widget.question.userAnswer
@@ -119,8 +125,13 @@ class _FillInAnswer extends State<FillInAnswer> {
     });
   }
 
+  void disposeTextController() {
+    _textController!.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    disposeTextController();
     initTextController();
     return Row(
       children: [

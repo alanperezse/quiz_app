@@ -16,7 +16,7 @@ class QuizOptionsScreen extends StatefulWidget {
 }
 
 class _QuizOptionsScreen extends State<QuizOptionsScreen> {
-  var _numQuestions;
+  int? _numQuestions;
   late final List<int> _pickerOptions;
 
   @override
@@ -62,7 +62,7 @@ class _QuizOptionsScreen extends State<QuizOptionsScreen> {
                   context,
                   CupertinoPageRoute(
                     builder: (BuildContext context) {
-                      final randomQuestions = widget.questionPool.selectRandomQuestions(_numQuestions);
+                      final randomQuestions = widget.questionPool.selectRandomQuestions(_numQuestions!);
                       final quiz = Quiz(randomQuestions);
                       return QuizListScreen(quiz: quiz);
                     }

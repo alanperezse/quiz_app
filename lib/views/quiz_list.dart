@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:cupertino_list_tile/cupertino_list_tile.dart';
 import 'package:quiz_app/views/question.dart';
-import 'package:quiz_app/models/quiz.dart';
 import 'package:quiz_app/views/results.dart';
 
 class QuizListScreen extends StatefulWidget {
@@ -38,7 +37,7 @@ class _QuizListScreen extends State<QuizListScreen> {
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
-                  CupertinoPageRoute(builder: (BuildContext context) => ResultsScreen())
+                  CupertinoPageRoute(builder: (BuildContext context) => const ResultsScreen())
                 );
               }
             ),

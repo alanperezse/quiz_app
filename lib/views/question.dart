@@ -192,7 +192,7 @@ class _MultipleChoiceAnswer extends State<MultipleChoiceAnswer> {
               Expanded(
                 child: Text(
                   widget.question.choices[i],
-                  style: TextStyle(color: Colors.grey),
+                  style: const TextStyle(color: Colors.grey),
                 ),
               )
             ],

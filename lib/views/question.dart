@@ -101,9 +101,41 @@ class FillInAnswer extends StatefulWidget {
 }
 
 class _FillInAnswer extends State<FillInAnswer> {
+  late final TextEditingController _textController;
+
+  @override
+  void initState() {
+    super.initState();
+    _textController = TextEditingController(
+      text: widget.question.userAnswer
+    );
+
+    _textController.addListener(() {
+      widget.question.userAnswer = _textController.text;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Text('Fill in');
+    return Row(
+      children: [
+        const Text(
+          'Answer: ',
+          style: TextStyle(
+            color: Colors.pink
+          ),
+        ),
+        Expanded(
+          child: CupertinoTextField(
+            controller: _textController,
+            placeholder: 'Type your answer here',
+            style: const TextStyle(
+              color: Colors.grey
+            ),
+          )
+        )
+      ],
+    );
   }
 }
 

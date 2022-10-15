@@ -4,7 +4,7 @@ import 'package:quiz_app/views/question.dart';
 import 'package:quiz_app/models/quiz.dart';
 
 class QuizListScreen extends StatefulWidget {
-  final Quiz quiz;
+  final quiz;
   const QuizListScreen({Key? key, required this.quiz}) : super(key: key);
 
   @override
@@ -44,6 +44,7 @@ class _QuizListScreen extends State<QuizListScreen> {
                   stem: widget.quiz.questions[index].stem,
                   index: index + 1,
                   onTap: () {onNavigate(index);},
+                  userAnswer: widget.quiz.questions[index].userAnswer,
                 );
               },
               childCount: widget.quiz.length,
@@ -58,9 +59,16 @@ class _QuizListScreen extends State<QuizListScreen> {
 class QuizCard extends StatelessWidget {
   final String stem;
   final int index;
+  final userAnswer;
   final VoidCallback onTap;
 
-  const QuizCard({Key? key, required this.stem, required this.index, required this.onTap}) : super(key: key);
+  const QuizCard({
+    Key? key,
+    required this.stem,
+    required this.index,
+    required this.onTap,
+    required this.userAnswer
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -74,8 +82,10 @@ class QuizCard extends StatelessWidget {
         ]
       ),
       onTap: onTap,
-      leading: const Icon(
-        CupertinoIcons.check_mark_circled
+      leading: Icon(
+        userAnswer == null ?
+          CupertinoIcons.circle :
+          CupertinoIcons.check_mark_circled
       ),
       trailing: const Icon(
         CupertinoIcons.forward

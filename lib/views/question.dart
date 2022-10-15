@@ -101,22 +101,27 @@ class FillInAnswer extends StatefulWidget {
 }
 
 class _FillInAnswer extends State<FillInAnswer> {
-  late final TextEditingController _textController;
+  TextEditingController? _textController;
 
   @override
   void initState() {
     super.initState();
+    initTextController();
+  }
+
+  void initTextController() {
     _textController = TextEditingController(
       text: widget.question.userAnswer
     );
 
-    _textController.addListener(() {
-      widget.question.userAnswer = _textController.text;
+    _textController!.addListener(() {
+      widget.question.userAnswer = _textController!.text;
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    initTextController();
     return Row(
       children: [
         const Text(

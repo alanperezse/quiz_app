@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:cupertino_list_tile/cupertino_list_tile.dart';
 import 'package:quiz_app/views/question.dart';
 import 'package:quiz_app/models/quiz.dart';
+import 'package:quiz_app/views/results.dart';
 
 class QuizListScreen extends StatefulWidget {
   final quiz;
@@ -34,7 +35,12 @@ class _QuizListScreen extends State<QuizListScreen> {
             trailing: CupertinoButton(
               padding: EdgeInsets.zero,
               child: const Text('Submit'),
-              onPressed: () {}
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  CupertinoPageRoute(builder: (BuildContext context) => ResultsScreen())
+                );
+              }
             ),
           ),
           SliverList(

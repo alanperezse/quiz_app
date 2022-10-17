@@ -37,7 +37,7 @@ class FillInQuestion extends Question{
 
     return QuestionResult(
       _stem,
-      answer,
+      answer.toString(),
       userAnswer,
       score
     );

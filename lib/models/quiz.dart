@@ -26,6 +26,7 @@ class Quiz {
     List<QuestionResult> questionResults = [];
     for(var question in _questions) {
       var result = question.evaluate();
+      questionResults.add(result);
       score += result.score;
     }
 

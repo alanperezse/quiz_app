@@ -1,4 +1,5 @@
 import 'package:quiz_app/models/question.dart';
+import 'package:quiz_app/models/results.dart';
 import 'package:quiz_app/models/score.dart';
 
 
@@ -8,16 +9,16 @@ import 'package:quiz_app/models/score.dart';
 class MultipleChoiceQuestion extends Question {
   final String _stem;
   final List _choices;
-  final num _answer;
+  final int _answer;
   /// User provided answer.
-  num? userAnswer;
+  int? userAnswer;
 
   /// Immutable list of strings detailing
   /// possible answers to the prompt. Only
   /// one of them is correct.
   List get choices => _choices;
   /// Correct answer.
-  num get answer => _answer;
+  int get answer => _answer;
 
   /// Initializes the question. User answer
   /// must be provided afterwards.
@@ -27,9 +28,16 @@ class MultipleChoiceQuestion extends Question {
   /// whether or not the user answer matches
   /// the correct answer.
   @override
-  Score evaluate() {
-    var score = userAnswer == _answer ? 1 : 0;
-    return Score(score, 1);
+  Result evaluate() {
+    var points = userAnswer == _answer ? 1 : 0;
+    var score =  Score(points, 1);
+
+    return Result(
+      stem,
+      choices[answer],
+      userAnswer == null ? userAnswer : choices[userAnswer!],
+      score
+    );
   }
   
   /// The prompt to the question.

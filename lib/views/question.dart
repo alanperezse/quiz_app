@@ -165,7 +165,7 @@ class MultipleChoiceAnswer extends StatefulWidget {
 }
 
 class _MultipleChoiceAnswer extends State<MultipleChoiceAnswer> {
-  void onRadioChanged(num i) {
+  void onRadioChanged(int i) {
     setState(() {
       widget.question.userAnswer = i;
     });

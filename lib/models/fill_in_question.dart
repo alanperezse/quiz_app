@@ -1,4 +1,5 @@
 import 'package:quiz_app/models/question.dart';
+import 'package:quiz_app/models/results.dart';
 import 'package:quiz_app/models/score.dart';
 
 
@@ -22,17 +23,24 @@ class FillInQuestion extends Question{
   /// whether or not the user answer matches
   /// any of the acceptable answers.
   @override
-  Score evaluate() {
-    var score = 0;
+  Result evaluate() {
+    var points = 0;
 
     for(var ans in answer) {
       if (ans == (userAnswer ?? '')) {
-        score = 1;
+        points = 1;
         break;
       }
     }
 
-    return Score(score, 1);
+    var score = Score(points, 1);
+
+    return Result(
+      _stem,
+      answer,
+      userAnswer,
+      score
+    );
   }
   
   /// The prompt to the question.

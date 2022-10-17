@@ -1,3 +1,4 @@
+import 'package:quiz_app/models/results.dart';
 import 'package:quiz_app/models/score.dart';
 
 
@@ -7,5 +8,5 @@ abstract class Question {
   String get stem;
   /// Returns a score indicating the performance
   /// of the user based on their answers.
-  Score evaluate();
+  Result evaluate();
 }

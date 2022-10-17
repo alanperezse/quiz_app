@@ -1,6 +1,6 @@
 import 'package:quiz_app/models/score.dart';
 
-class Result {
+class QuestionResult {
   final String _stem;
   final String _answer;
   final String? _userAnswer;
@@ -11,7 +11,7 @@ class Result {
   get userAnswer => _userAnswer;
   get score => _score;
 
-  Result(this._stem, this._answer, this._userAnswer, this._score);
+  QuestionResult(this._stem, this._answer, this._userAnswer, this._score);
 
   @override
   String toString() {

@@ -8,5 +8,5 @@ abstract class Question {
   String get stem;
   /// Returns a score indicating the performance
   /// of the user based on their answers.
-  Result evaluate();
+  QuestionResult evaluate();
 }

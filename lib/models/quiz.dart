@@ -1,4 +1,6 @@
 import 'package:quiz_app/models/question.dart';
+import 'package:quiz_app/models/quiz_result.dart';
+import 'package:quiz_app/models/results.dart';
 import 'score.dart';
 
 
@@ -19,12 +21,17 @@ class Quiz {
 
   /// Returns the sum of the user performance for
   /// the questions.
-  Score evaluate() {
+  QuizResult evaluate() {
     var score = Score(0, 0);
+    List<QuestionResult> questionResults = [];
     for(var question in _questions) {
-      score += question.evaluate();
+      var result = question.evaluate();
+      score += result.score;
     }
 
-    return score;
+    return QuizResult(
+      questionResults,
+      score
+    );
   }
 }

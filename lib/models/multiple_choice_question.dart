@@ -28,11 +28,11 @@ class MultipleChoiceQuestion extends Question {
   /// whether or not the user answer matches
   /// the correct answer.
   @override
-  Result evaluate() {
+  QuestionResult evaluate() {
     var points = userAnswer == _answer ? 1 : 0;
     var score =  Score(points, 1);
 
-    return Result(
+    return QuestionResult(
       stem,
       choices[answer],
       userAnswer == null ? userAnswer : choices[userAnswer!],

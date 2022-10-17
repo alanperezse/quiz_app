@@ -23,7 +23,7 @@ class FillInQuestion extends Question{
   /// whether or not the user answer matches
   /// any of the acceptable answers.
   @override
-  Result evaluate() {
+  QuestionResult evaluate() {
     var points = 0;
 
     for(var ans in answer) {
@@ -35,7 +35,7 @@ class FillInQuestion extends Question{
 
     var score = Score(points, 1);
 
-    return Result(
+    return QuestionResult(
       _stem,
       answer,
       userAnswer,

@@ -182,7 +182,7 @@ class _MultipleChoiceAnswer extends State<MultipleChoiceAnswer> {
           child: Row(
             children: [
               Icon(
-                widget.question.userAnswer == i ?
+                widget.question.userAnswer == i + 1 ?
                   CupertinoIcons.check_mark_circled :
                   CupertinoIcons.circle
               ),
@@ -197,7 +197,7 @@ class _MultipleChoiceAnswer extends State<MultipleChoiceAnswer> {
               )
             ],
           ),
-          onPressed: () => onRadioChanged(i)
+          onPressed: () => onRadioChanged(i + 1)
         )
       );
     }

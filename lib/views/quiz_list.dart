@@ -37,7 +37,7 @@ class _QuizListScreen extends State<QuizListScreen> {
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
-                  CupertinoPageRoute(builder: (BuildContext context) => const ResultsScreen())
+                  CupertinoPageRoute(builder: (BuildContext context) => ResultsScreen(quizResult: widget.quiz.evaluate(),))
                 );
               }
             ),

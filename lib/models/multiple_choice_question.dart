@@ -35,7 +35,7 @@ class MultipleChoiceQuestion extends Question {
     return QuestionResult(
       stem,
       choices[answer - 1],
-      userAnswer == null ? userAnswer : choices[userAnswer!],
+      userAnswer == null ? userAnswer : choices[userAnswer! - 1],
       score
     );
   }

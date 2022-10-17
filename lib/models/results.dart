@@ -6,10 +6,10 @@ class QuestionResult {
   final String? _userAnswer;
   final Score _score;
 
-  get stem => _stem;
-  get answer => _answer;
-  get userAnswer => _userAnswer;
-  get score => _score;
+  String get stem => _stem;
+  String get answer => _answer;
+  String? get userAnswer => _userAnswer;
+  Score get score => _score;
 
   QuestionResult(this._stem, this._answer, this._userAnswer, this._score);
 

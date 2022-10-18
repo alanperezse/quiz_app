@@ -46,4 +46,12 @@ class FillInQuestion extends Question{
   /// The prompt to the question.
   @override
   String get stem => _stem;
+
+  @override
+  FillInQuestion clone() {
+    return FillInQuestion(
+      stem,
+      answer
+    );
+  }
 }

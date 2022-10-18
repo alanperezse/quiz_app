@@ -15,7 +15,7 @@ class QuestionPool {
   /// Retrieves a random set of questions from
   /// the pool.
   List<Question> selectRandomQuestions(int num) {
-    var randomList = questions.toList();
+    var randomList = questions.map<Question>((Question question) => question.clone()).toList();
     randomList.shuffle();
     return randomList.sublist(0, num);
   }

@@ -43,4 +43,13 @@ class MultipleChoiceQuestion extends Question {
   /// The prompt to the question.
   @override
   String get stem => _stem;
+
+  @override
+  MultipleChoiceQuestion clone() {
+    return MultipleChoiceQuestion(
+      stem,
+      choices,
+      answer
+    );
+  }
 }

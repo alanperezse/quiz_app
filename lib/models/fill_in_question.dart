@@ -19,7 +19,7 @@ class FillInQuestion extends Question{
 
   /// Immutable list of strings of correct
   /// answers.
-  get answer => _answer;
+  Iterable get answer => _answer;
 
   @override
   String? get figureURL => _figureURL;

@@ -1,4 +1,4 @@
-import 'package:quiz_app/models/results.dart';
+import 'package:quiz_app/models/question_result.dart';
 
 /// Contains the information for a question.
 abstract class Question {

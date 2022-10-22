@@ -3,10 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/models/quiz_result.dart';
 
-class ResultsScreen extends StatelessWidget {
+class ResultScreen extends StatelessWidget {
   final QuizResult quizResult;
 
-  const ResultsScreen({Key? key, required this.quizResult}) : super(key: key);
+  const ResultScreen({Key? key, required this.quizResult}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

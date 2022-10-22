@@ -1,17 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:cupertino_list_tile/cupertino_list_tile.dart';
-import 'package:quiz_app/views/question.dart';
-import 'package:quiz_app/views/results.dart';
+import 'package:quiz_app/views/question_screen.dart';
+import 'package:quiz_app/views/result_screen.dart';
 
-class QuizListScreen extends StatefulWidget {
+class QuizScreen extends StatefulWidget {
   final quiz;
-  const QuizListScreen({Key? key, required this.quiz}) : super(key: key);
+  const QuizScreen({Key? key, required this.quiz}) : super(key: key);
 
   @override
-  State<QuizListScreen> createState() => _QuizListScreen();
+  State<QuizScreen> createState() => _QuizScreen();
 }
 
-class _QuizListScreen extends State<QuizListScreen> {
+class _QuizScreen extends State<QuizScreen> {
   void onNavigate(int index) {
     Navigator.push(
       context,
@@ -43,7 +43,7 @@ class _QuizListScreen extends State<QuizListScreen> {
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
-                  CupertinoPageRoute(builder: (BuildContext context) => ResultsScreen(quizResult: widget.quiz.evaluate(),))
+                  CupertinoPageRoute(builder: (BuildContext context) => ResultScreen(quizResult: widget.quiz.evaluate(),))
                 );
               }
             ),

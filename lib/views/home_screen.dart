@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/models/login_data.dart';
 import 'package:quiz_app/models/question_pool.dart';
 import 'package:quiz_app/utilities/api_util.dart';
-import 'package:quiz_app/views/quiz_options.dart';
+import 'package:quiz_app/views/quiz_setup_screen.dart';
 
-class MyHomePage extends StatelessWidget {
+class HomeScreen extends StatelessWidget {
   final LoginData loginData;
-  const MyHomePage({super.key, required this.loginData});
+  const HomeScreen({super.key, required this.loginData});
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +93,7 @@ class _QuizInfoWidget extends State<QuizInfoWidget> {
                   return CupertinoButton.filled(
                     onPressed: () => Navigator.push(
                       context,
-                      CupertinoPageRoute(builder: (BuildContext context) => QuizOptionsScreen(questionPool: snapshot.data!,))
+                      CupertinoPageRoute(builder: (BuildContext context) => QuizSetupScreen(questionPool: snapshot.data!,))
                     ),
                     child: const Text('Take quiz'),
                   );

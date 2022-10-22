@@ -12,14 +12,4 @@ class QuestionResult {
   Score get score => _score;
 
   QuestionResult(this._stem, this._answer, this._userAnswer, this._score);
-
-  @override
-  String toString() {
-    return {
-      'stem': stem,
-      'answer': answer,
-      'userAnswer': userAnswer,
-      'score': '${score.points}/${score.maxPoints}'
-    }.toString();
-  }
 }

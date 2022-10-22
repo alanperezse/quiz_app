@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/models/fill_in_question.dart';
 import 'package:quiz_app/models/multiple_choice_question.dart';
 import 'package:quiz_app/models/quiz.dart';
+import 'package:quiz_app/utilities/api_util.dart';
 
 class QuestionScreen extends StatefulWidget {
   final int index;
   final Quiz quiz;
-  const QuestionScreen({Key? key, required this.index, required this.quiz}) : super(key: key);
+  final APIUtil api = APIUtil();
+
+  QuestionScreen({Key? key, required this.index, required this.quiz}) : super(key: key);
   
   @override
   State<QuestionScreen> createState() => _QuestionScreen();
@@ -57,7 +60,14 @@ class _QuestionScreen extends State<QuestionScreen> {
                         ),
                         widget.quiz.questions[index!].runtimeType == FillInQuestion ? 
                           FillInAnswer(question: widget.quiz.questions[index!] as FillInQuestion) :
-                          MultipleChoiceAnswer(question: widget.quiz.questions[index!] as MultipleChoiceQuestion)
+                          MultipleChoiceAnswer(question: widget.quiz.questions[index!] as MultipleChoiceQuestion),
+                        const SizedBox(height: 20),
+                        widget.quiz.questions[index!].figureURL == null ?
+                          const SizedBox() :
+                          Image.network(
+                            widget.api.getQuestionFigureURL(widget.quiz.questions[index!].figureURL!),
+                            color: Colors.white,
+                          )
                       ],
                     )
                   ),

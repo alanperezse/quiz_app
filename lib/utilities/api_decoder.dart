@@ -26,6 +26,7 @@ class APIDecoder {
         questions.add(
           MultipleChoiceQuestion(
             question['stem'],
+            question['figure'],
             question['option'],
             question['answer']
           )
@@ -34,6 +35,7 @@ class APIDecoder {
         questions.add(
           FillInQuestion(
             question['stem'],
+            question['figure'],
             question['answer']
           )
         );

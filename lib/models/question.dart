@@ -4,6 +4,7 @@ import 'package:quiz_app/models/results.dart';
 abstract class Question {
   /// The prompt to the question.
   String get stem;
+  String? get figureURL;
   /// Returns a score indicating the performance
   /// of the user based on their answers.
   QuestionResult evaluate();

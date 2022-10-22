@@ -8,6 +8,7 @@ import 'package:quiz_app/models/score.dart';
 /// provided alternatives.
 class MultipleChoiceQuestion extends Question {
   final String _stem;
+  final String? _figureURL;
   final List _choices;
   final int _answer;
   /// User provided answer.
@@ -19,10 +20,13 @@ class MultipleChoiceQuestion extends Question {
   List get choices => _choices;
   /// Correct answer.
   int get answer => _answer;
+  ///  Get url for image related to question
+  @override
+  String? get figureURL => _figureURL;
 
   /// Initializes the question. User answer
   /// must be provided afterwards.
-  MultipleChoiceQuestion(this._stem, this._choices, this._answer);
+  MultipleChoiceQuestion(this._stem, this._figureURL, this._choices, this._answer);
 
   /// Returns a score of 0/1 or 1/1 depending
   /// whether or not the user answer matches
@@ -48,6 +52,7 @@ class MultipleChoiceQuestion extends Question {
   MultipleChoiceQuestion clone() {
     return MultipleChoiceQuestion(
       stem,
+      figureURL,
       choices,
       answer
     );

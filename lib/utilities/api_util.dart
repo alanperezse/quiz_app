@@ -8,6 +8,7 @@ class APIUtil {
   static const String url = 'www.cs.utep.edu';
   static const String authenticatePath = '/cheon/cs4381/homework/quiz/login.php';
   static const String quizPath = '/cheon/cs4381/homework/quiz/get.php';
+  static const String figurePath = '/cheon/cs4381/homework/quiz/figure.php';
   final _decoder = APIDecoder();
 
   void validateUser(LoginData loginData, Function onSuccess, Function onFailure) async {
@@ -53,6 +54,11 @@ class APIUtil {
     }
     
     return QuestionPool(questions);
+  }
+
+  String getQuestionFigureURL(String figureURL) {
+    print('https://$url$figurePath?name=$figureURL');
+    return 'https://$url$figurePath?name=$figureURL';
   }
 
   /// Given a number in the range [0-99] inclusive, it returns

@@ -21,7 +21,13 @@ class _QuizListScreen extends State<QuizListScreen> {
           index: index,
         )
       )
-    );
+    )
+      .then((value) => onPop())
+    ;
+  }
+
+  void onPop() {
+    setState(() {});
   }
 
   @override

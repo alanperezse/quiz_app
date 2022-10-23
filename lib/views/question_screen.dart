@@ -6,11 +6,15 @@ import 'package:quiz_app/models/quiz.dart';
 import 'package:quiz_app/utilities/api_util.dart';
 
 class QuestionScreen extends StatefulWidget {
-  final int index;
-  final Quiz quiz;
-  final APIUtil api = APIUtil();
+  final int _index;
+  final Quiz _quiz;
+  final APIUtil _api = APIUtil();
 
-  QuestionScreen({Key? key, required this.index, required this.quiz}) : super(key: key);
+  QuestionScreen({Key? key, required index, required quiz}) :
+    _index = index,
+    _quiz = quiz,
+    super(key: key)
+    ;
   
   @override
   State<QuestionScreen> createState() => _QuestionScreen();
@@ -22,7 +26,7 @@ class _QuestionScreen extends State<QuestionScreen> {
   @override
   void initState() {
     super.initState();
-    index = widget.index;
+    index = widget._index;
   }
 
   void onNext() {
@@ -54,18 +58,18 @@ class _QuestionScreen extends State<QuestionScreen> {
                     child: ListView(
                       padding: EdgeInsets.zero,
                       children: [
-                        Text(widget.quiz.questions[index!].stem),
+                        Text(widget._quiz.questions[index!].stem),
                         const SizedBox(
                           height: 20,
                         ),
-                        widget.quiz.questions[index!].runtimeType == FillInQuestion ? 
-                          FillInAnswer(question: widget.quiz.questions[index!] as FillInQuestion) :
-                          MultipleChoiceAnswer(question: widget.quiz.questions[index!] as MultipleChoiceQuestion),
+                        widget._quiz.questions[index!].runtimeType == FillInQuestion ? 
+                          FillInAnswer(question: widget._quiz.questions[index!] as FillInQuestion) :
+                          MultipleChoiceAnswer(question: widget._quiz.questions[index!] as MultipleChoiceQuestion),
                         const SizedBox(height: 20),
-                        widget.quiz.questions[index!].figureURL == null ?
+                        widget._quiz.questions[index!].figureURL == null ?
                           const SizedBox() :
                           Image.network(
-                            widget.api.getQuestionFigureURL(widget.quiz.questions[index!].figureURL!),
+                            widget._api.getQuestionFigureURL(widget._quiz.questions[index!].figureURL!),
                             color: Colors.white,
                           )
                       ],
@@ -77,7 +81,7 @@ class _QuestionScreen extends State<QuestionScreen> {
                   SizedBox(
                     width: double.infinity,
                     child: CupertinoButton.filled(
-                      onPressed: index! >= widget.quiz.length - 1 ? null : onNext,
+                      onPressed: index! >= widget._quiz.length - 1 ? null : onNext,
                       child: const Text('Next'),
                     ),
                   ),
@@ -102,9 +106,12 @@ class _QuestionScreen extends State<QuestionScreen> {
 }
 
 class FillInAnswer extends StatefulWidget {
-  final FillInQuestion question;
+  final FillInQuestion _question;
 
-  const FillInAnswer({Key? key, required this.question}) : super(key: key);
+  const FillInAnswer({Key? key, required question}) :
+    _question = question,
+    super(key: key)
+  ;
 
   @override
   State<FillInAnswer> createState() => _FillInAnswer();
@@ -127,11 +134,11 @@ class _FillInAnswer extends State<FillInAnswer> {
 
   void initTextController() {
     _textController = TextEditingController(
-      text: widget.question.userAnswer
+      text: widget._question.userAnswer
     );
 
     _textController!.addListener(() {
-      widget.question.userAnswer = _textController!.text;
+      widget._question.userAnswer = _textController!.text;
     });
   }
 

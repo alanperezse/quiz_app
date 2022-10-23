@@ -4,8 +4,11 @@ import 'package:quiz_app/views/question_screen.dart';
 import 'package:quiz_app/views/result_screen.dart';
 
 class QuizScreen extends StatefulWidget {
-  final quiz;
-  const QuizScreen({Key? key, required this.quiz}) : super(key: key);
+  final _quiz;
+
+  const QuizScreen({Key? key, required quiz}) :
+    _quiz = quiz,
+    super(key: key);
 
   @override
   State<QuizScreen> createState() => _QuizScreen();
@@ -17,7 +20,7 @@ class _QuizScreen extends State<QuizScreen> {
       context,
       CupertinoPageRoute(
           builder: (BuildContext context) => QuestionScreen(
-          quiz: widget.quiz,
+          quiz: widget._quiz,
           index: index,
         )
       )
@@ -43,7 +46,7 @@ class _QuizScreen extends State<QuizScreen> {
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
-                  CupertinoPageRoute(builder: (BuildContext context) => ResultScreen(quizResult: widget.quiz.evaluate(),))
+                  CupertinoPageRoute(builder: (BuildContext context) => ResultScreen(quizResult: widget._quiz.evaluate(),))
                 );
               }
             ),
@@ -52,13 +55,13 @@ class _QuizScreen extends State<QuizScreen> {
             delegate: SliverChildBuilderDelegate(
               (context, index) {
                 return QuizCard(
-                  stem: widget.quiz.questions[index].stem,
+                  stem: widget._quiz.questions[index].stem,
                   index: index + 1,
                   onTap: () {onNavigate(index);},
-                  userAnswer: widget.quiz.questions[index].userAnswer,
+                  userAnswer: widget._quiz.questions[index].userAnswer,
                 );
               },
-              childCount: widget.quiz.length,
+              childCount: widget._quiz.length,
             )
           )
         ],
@@ -68,33 +71,38 @@ class _QuizScreen extends State<QuizScreen> {
 }
 
 class QuizCard extends StatelessWidget {
-  final String stem;
-  final int index;
-  final userAnswer;
-  final VoidCallback onTap;
+  final String _stem;
+  final int _index;
+  final _userAnswer;
+  final VoidCallback _onTap;
 
   const QuizCard({
     Key? key,
-    required this.stem,
-    required this.index,
-    required this.onTap,
-    required this.userAnswer
-  }) : super(key: key);
+    required stem,
+    required index,
+    required onTap,
+    required userAnswer
+  }) :
+    _stem = stem,
+    _index = index,
+    _onTap = onTap,
+    _userAnswer = userAnswer,
+    super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return CupertinoListTile(
-      title: Text('Question $index'),
+      title: Text('Question $_index'),
       subtitle: Row(
         children: [
           Flexible(
-            child: Text(stem, overflow: TextOverflow.ellipsis)
+            child: Text(_stem, overflow: TextOverflow.ellipsis)
           )
         ]
       ),
-      onTap: onTap,
+      onTap: _onTap,
       leading: Icon(
-        userAnswer == null ?
+        _userAnswer == null ?
           CupertinoIcons.circle :
           CupertinoIcons.check_mark_circled
       ),

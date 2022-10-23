@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/models/quiz_result.dart';
 
 class ResultScreen extends StatelessWidget {
-  final QuizResult quizResult;
+  final QuizResult _quizResult;
 
-  const ResultScreen({Key? key, required this.quizResult}) : super(key: key);
+  const ResultScreen({Key? key, required quizResult}) :
+    _quizResult = quizResult,
+    super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +16,12 @@ class ResultScreen extends StatelessWidget {
       child: CustomScrollView(
         slivers: [
           CupertinoSliverNavigationBar(
-            largeTitle: Text('Results (${quizResult.score.points}/${quizResult.score.maxPoints})'),
+            largeTitle: Text('Results (${_quizResult.score.points}/${_quizResult.score.maxPoints})'),
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) {
-                final questionResult = quizResult.questionResults[index];
+                final questionResult = _quizResult.questionResults[index];
 
                 return CupertinoListTile(
                   leading:
@@ -81,7 +83,7 @@ class ResultScreen extends StatelessWidget {
                   trailing: const SizedBox(),
                 );
               },
-              childCount: quizResult.questionResults.length,
+              childCount: _quizResult.questionResults.length,
             )
           )
         ],

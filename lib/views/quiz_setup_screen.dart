@@ -7,9 +7,11 @@ import 'package:quiz_app/views/quiz_screen.dart';
 import '../models/quiz.dart';
 
 class QuizSetupScreen extends StatefulWidget {
-  final QuestionPool questionPool;
+  final QuestionPool _questionPool;
 
-  const QuizSetupScreen({Key? key, required this.questionPool}) : super(key: key);
+  const QuizSetupScreen({Key? key, required questionPool}) :
+    _questionPool = questionPool,
+    super(key: key);
 
   @override
   State<QuizSetupScreen> createState() => _QuizSetupScreen();
@@ -22,8 +24,8 @@ class _QuizSetupScreen extends State<QuizSetupScreen> {
   @override
   void initState() {
     super.initState();
-    _numQuestions = math.min(5, widget.questionPool.length);
-    _pickerOptions = List<int>.generate(widget.questionPool.length, (index) => index + 1);
+    _numQuestions = math.min(5, widget._questionPool.length);
+    _pickerOptions = List<int>.generate(widget._questionPool.length, (index) => index + 1);
   }
 
   void _showDialog(Widget child) {
@@ -62,7 +64,7 @@ class _QuizSetupScreen extends State<QuizSetupScreen> {
                   context,
                   CupertinoPageRoute(
                     builder: (BuildContext context) {
-                      final randomQuestions = widget.questionPool.selectRandomQuestions(_numQuestions!);
+                      final randomQuestions = widget._questionPool.selectRandomQuestions(_numQuestions!);
                       final quiz = Quiz(randomQuestions);
                       return QuizScreen(quiz: quiz);
                     }
@@ -120,16 +122,21 @@ class _QuizSetupScreen extends State<QuizSetupScreen> {
 }
 
 class PrefixWidget extends StatelessWidget {
+  final IconData _icon;
+  final String _title;
+  final Color _color;
+
   const PrefixWidget({
     super.key,
-    required this.icon,
-    required this.title,
-    required this.color,
-  });
+    required icon,
+    required title,
+    required color,
+  }) :
+    _icon = icon,
+    _title = title,
+    _color = color
+  ;
 
-  final IconData icon;
-  final String title;
-  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -138,13 +145,13 @@ class PrefixWidget extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(4.0),
           decoration: BoxDecoration(
-            color: color,
+            color: _color,
             borderRadius: BorderRadius.circular(4.0),
           ),
-          child: Icon(icon, color: CupertinoColors.white),
+          child: Icon(_icon, color: CupertinoColors.white),
         ),
         const SizedBox(width: 15),
-        Text(title)
+        Text(_title)
       ],
     );
   }

@@ -5,9 +5,12 @@ import 'package:quiz_app/models/question_pool.dart';
 import 'package:quiz_app/utilities/api_util.dart';
 import 'package:quiz_app/views/quiz_setup_screen.dart';
 
+/// View for the home screen
 class HomeScreen extends StatelessWidget {
-  final LoginData loginData;
-  const HomeScreen({super.key, required this.loginData});
+  final LoginData _loginData;
+  const HomeScreen({super.key, required loginData}) : _loginData = loginData;
+
+  LoginData get loginData => _loginData;
 
   @override
   Widget build(BuildContext context) {

@@ -19,8 +19,4 @@ class QuestionPool {
     randomList.shuffle();
     return randomList.sublist(0, num);
   }
-
-  void addQuestions(List<Question> newQuestions) {
-    questions.addAll(newQuestions);
-  }
 }

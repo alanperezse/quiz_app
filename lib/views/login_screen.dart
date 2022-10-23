@@ -62,16 +62,22 @@ class _LoginScreen extends State<LoginScreen> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       setState(() => _isButtonDisabled = true);
-      _api.validateUser(_loginData, (LoginResponse response) { // On success
-        Navigator.pushReplacement(
-          context,
-          CupertinoPageRoute(builder: (BuildContext context) => HomeScreen(loginData: _loginData,))
-        );
-        setState(() => _isButtonDisabled = false);
-      }, (LoginResponse response) { // On failure
-        _showAlertDialog(context, 'Error', response.reason!);
-        setState(() => _isButtonDisabled = false);
-      });
+      _api.validateUser(_loginData)
+        .then((LoginResponse response) {
+          if(response.response) {
+            Navigator.pushReplacement(
+              context,
+              CupertinoPageRoute(builder: (BuildContext context) => HomeScreen(loginData: _loginData,))
+            );
+          } else {
+            _showAlertDialog(context, 'Error', response.reason!);
+            setState(() => _isButtonDisabled = false);
+          }
+        })
+        .catchError((error) {
+          print(error);
+          setState(() => _isButtonDisabled = false);
+        });
     }
   }
 

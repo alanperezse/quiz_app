@@ -1,4 +1,5 @@
 import 'package:http/http.dart' as http;
+import 'package:quiz_app/models/login_response.dart';
 import 'package:quiz_app/models/question.dart';
 import 'package:quiz_app/models/question_pool.dart';
 import 'package:quiz_app/utilities/api_decoder.dart';
@@ -12,19 +13,14 @@ class APIUtil {
   static const _figurePath = '/cheon/cs4381/homework/quiz/figure.php';
   final _decoder = APIDecoder();
 
-  void validateUser(LoginData loginData, Function onSuccess, Function onFailure) async {
+  Future<LoginResponse> validateUser(LoginData loginData) async {
     var response = await http.get(
       Uri.https(_url, _authenticatePath, {
         'user': loginData.username,
         'pin': loginData.pin
       }
     ));
-    var parsedResponse = _decoder.decodeAuthResponse(response);
-    if (parsedResponse.response) {
-      onSuccess(parsedResponse);
-    } else {
-      onFailure(parsedResponse);
-    }
+    return _decoder.decodeAuthResponse(response);
   }
 
   /// Returns a question pool containing all the questions from all

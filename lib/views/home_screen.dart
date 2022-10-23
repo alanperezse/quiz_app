@@ -10,8 +10,6 @@ class HomeScreen extends StatelessWidget {
   final LoginData _loginData;
   const HomeScreen({super.key, required loginData}) : _loginData = loginData;
 
-  LoginData get loginData => _loginData;
-
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -25,7 +23,7 @@ class HomeScreen extends StatelessWidget {
               children: [
                 Container(
                   margin: const EdgeInsets.all(30),
-                  child: QuizInfoWidget(loginData: loginData),
+                  child: QuizInfoWidget(loginData: _loginData),
                 )
               ]
             )

@@ -4,6 +4,7 @@ import '../models/login_response.dart';
 import '../models/login_data.dart';
 import 'package:quiz_app/utilities/api_util.dart';
 
+/// Widget for the Log in screen
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -11,6 +12,7 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreen();
 }
 
+/// State of the LoginScreen widget
 class _LoginScreen extends State<LoginScreen> {
   final _loginData = LoginData();
   final _formKey = GlobalKey<FormState>();
@@ -39,6 +41,7 @@ class _LoginScreen extends State<LoginScreen> {
     );
   }
 
+  /// Validates the username
   String? _userNameValidator(String? val) {
     if (val == null || val.isEmpty) {
       return 'Please enter your username';
@@ -46,6 +49,7 @@ class _LoginScreen extends State<LoginScreen> {
     return null;
   }
 
+  /// Validates the pin. The pin must be exactly 4 characters long
   String? _pinValidator(String? val) {
     if (val == null || val.length != 4) {
       return 'PIN must be exactly 4 digits';
@@ -53,6 +57,7 @@ class _LoginScreen extends State<LoginScreen> {
     return null;
   }
 
+  /// Attempts to submit the form and authenticate the user
   void _submit() async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
@@ -70,6 +75,7 @@ class _LoginScreen extends State<LoginScreen> {
     }
   }
 
+  /// Defines the view
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(

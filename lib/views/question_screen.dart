@@ -5,11 +5,13 @@ import 'package:quiz_app/models/multiple_choice_question.dart';
 import 'package:quiz_app/models/quiz.dart';
 import 'package:quiz_app/utilities/api_util.dart';
 
+/// Widget that represents the view to a question
 class QuestionScreen extends StatefulWidget {
   final int _index;
   final Quiz _quiz;
   final APIUtil _api = APIUtil();
 
+  /// Initializes the widget
   QuestionScreen({Key? key, required index, required quiz}) :
     _index = index,
     _quiz = quiz,
@@ -20,34 +22,38 @@ class QuestionScreen extends StatefulWidget {
   State<QuestionScreen> createState() => _QuestionScreen();
 }
 
+/// State of QuestionScreen widget
 class _QuestionScreen extends State<QuestionScreen> {
-  int? index;
+  int? _index;
 
   @override
   void initState() {
     super.initState();
-    index = widget._index;
+    _index = widget._index;
   }
 
+  /// Helps the user go to the next question
   void onNext() {
     setState(() {
-      index = index! + 1;
+      _index = _index! + 1;
     });
   }
 
+  /// Helps the user go to the previous question
   void onPrevious() {
     setState(() {
-      index = index! - 1;
+      _index = _index! - 1;
     });
   }
 
+  /// Defines the view
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       child: CustomScrollView(
         slivers: [
           CupertinoSliverNavigationBar(
-            largeTitle: Text('Question ${index! + 1}')
+            largeTitle: Text('Question ${_index! + 1}')
           ),
           SliverFillRemaining(
             child: Container(
@@ -58,18 +64,18 @@ class _QuestionScreen extends State<QuestionScreen> {
                     child: ListView(
                       padding: EdgeInsets.zero,
                       children: [
-                        Text(widget._quiz.questions[index!].stem),
+                        Text(widget._quiz.questions[_index!].stem),
                         const SizedBox(
                           height: 20,
                         ),
-                        widget._quiz.questions[index!].runtimeType == FillInQuestion ? 
-                          FillInAnswer(question: widget._quiz.questions[index!] as FillInQuestion) :
-                          MultipleChoiceAnswer(question: widget._quiz.questions[index!] as MultipleChoiceQuestion),
+                        widget._quiz.questions[_index!].runtimeType == FillInQuestion ? 
+                          FillInAnswer(question: widget._quiz.questions[_index!] as FillInQuestion) :
+                          MultipleChoiceAnswer(question: widget._quiz.questions[_index!] as MultipleChoiceQuestion),
                         const SizedBox(height: 20),
-                        widget._quiz.questions[index!].figureURL == null ?
+                        widget._quiz.questions[_index!].figureURL == null ?
                           const SizedBox() :
                           Image.network(
-                            widget._api.getQuestionFigureURL(widget._quiz.questions[index!].figureURL!),
+                            widget._api.getQuestionFigureURL(widget._quiz.questions[_index!].figureURL!),
                             color: Colors.white,
                           )
                       ],
@@ -81,7 +87,7 @@ class _QuestionScreen extends State<QuestionScreen> {
                   SizedBox(
                     width: double.infinity,
                     child: CupertinoButton.filled(
-                      onPressed: index! >= widget._quiz.length - 1 ? null : onNext,
+                      onPressed: _index! >= widget._quiz.length - 1 ? null : onNext,
                       child: const Text('Next'),
                     ),
                   ),
@@ -91,7 +97,7 @@ class _QuestionScreen extends State<QuestionScreen> {
                   SizedBox(
                     width: double.infinity,
                     child: CupertinoButton(
-                      onPressed: index! <= 0 ? null : onPrevious,
+                      onPressed: _index! <= 0 ? null : onPrevious,
                       child: const Text('Previous'),
                     ),
                   ),
@@ -105,9 +111,11 @@ class _QuestionScreen extends State<QuestionScreen> {
   } 
 }
 
+/// Widget for displaying a Fill In answer
 class FillInAnswer extends StatefulWidget {
   final FillInQuestion _question;
 
+  /// Initializes the widget
   const FillInAnswer({Key? key, required question}) :
     _question = question,
     super(key: key)
@@ -117,6 +125,7 @@ class FillInAnswer extends StatefulWidget {
   State<FillInAnswer> createState() => _FillInAnswer();
 }
 
+/// State of FillInAnswer widget
 class _FillInAnswer extends State<FillInAnswer> {
   TextEditingController? _textController;
 
@@ -132,6 +141,7 @@ class _FillInAnswer extends State<FillInAnswer> {
     super.dispose();
   }
 
+  /// Initializes the text controller for the input
   void initTextController() {
     _textController = TextEditingController(
       text: widget._question.userAnswer
@@ -142,10 +152,12 @@ class _FillInAnswer extends State<FillInAnswer> {
     });
   }
 
+  /// Disposes of the text controller for the input
   void disposeTextController() {
     _textController!.dispose();
   }
 
+  /// Defines view
   @override
   Widget build(BuildContext context) {
     disposeTextController();
@@ -172,26 +184,31 @@ class _FillInAnswer extends State<FillInAnswer> {
   }
 }
 
+/// Widget for displaying a Multiple Choice quesiton
 class MultipleChoiceAnswer extends StatefulWidget {
-  final MultipleChoiceQuestion question;
+  final MultipleChoiceQuestion _question;
 
-  const MultipleChoiceAnswer({Key? key, required this.question}) : super(key: key);
+  /// Initializes the widget
+  const MultipleChoiceAnswer({Key? key, required question}) : 
+    _question = question,
+    super(key: key);
  
   @override
   State<MultipleChoiceAnswer> createState() => _MultipleChoiceAnswer();
 }
 
+/// State of MultipleChoideAnswer widget
 class _MultipleChoiceAnswer extends State<MultipleChoiceAnswer> {
   void onRadioChanged(int i) {
     setState(() {
-      widget.question.userAnswer = i;
+      widget._question.userAnswer = i;
     });
   }
 
-  List<CupertinoButton> radioOptions() {
+  List<CupertinoButton> _radioOptions() {
     List<CupertinoButton> rtn = [];
 
-    for (var i = 0; i < widget.question.choices.length; i++) {
+    for (var i = 0; i < widget._question.choices.length; i++) {
       rtn.add(
         CupertinoButton(
           padding: const EdgeInsets.symmetric(vertical: 10),
@@ -199,7 +216,7 @@ class _MultipleChoiceAnswer extends State<MultipleChoiceAnswer> {
           child: Row(
             children: [
               Icon(
-                widget.question.userAnswer == i + 1 ?
+                widget._question.userAnswer == i + 1 ?
                   CupertinoIcons.check_mark_circled :
                   CupertinoIcons.circle
               ),
@@ -208,7 +225,7 @@ class _MultipleChoiceAnswer extends State<MultipleChoiceAnswer> {
               ),
               Expanded(
                 child: Text(
-                  widget.question.choices[i],
+                  widget._question.choices[i],
                   style: const TextStyle(color: Colors.grey),
                 ),
               )
@@ -222,10 +239,11 @@ class _MultipleChoiceAnswer extends State<MultipleChoiceAnswer> {
     return rtn;
   }
 
+  /// Defines the view
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: radioOptions()
+      children: _radioOptions()
     );
   }
 }

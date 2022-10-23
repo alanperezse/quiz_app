@@ -4,9 +4,11 @@ import 'package:quiz_app/models/quiz.dart';
 import 'package:quiz_app/views/question_screen.dart';
 import 'package:quiz_app/views/result_screen.dart';
 
+/// Widget for displaying a summary of the questions of a quiz
 class QuizScreen extends StatefulWidget {
   final Quiz _quiz;
 
+  /// Initializes the widget
   const QuizScreen({Key? key, required quiz}) :
     _quiz = quiz,
     super(key: key);
@@ -15,8 +17,9 @@ class QuizScreen extends StatefulWidget {
   State<QuizScreen> createState() => _QuizScreen();
 }
 
+/// State of QuizScreen
 class _QuizScreen extends State<QuizScreen> {
-  void onNavigate(int index) {
+  void _onNavigate(int index) {
     Navigator.push(
       context,
       CupertinoPageRoute(
@@ -26,14 +29,11 @@ class _QuizScreen extends State<QuizScreen> {
         )
       )
     )
-      .then((value) => onPop())
+      .then((value) => setState(() {}))
     ;
   }
 
-  void onPop() {
-    setState(() {});
-  }
-
+  /// Defines the view
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -58,7 +58,7 @@ class _QuizScreen extends State<QuizScreen> {
                 return QuizCard(
                   stem: widget._quiz.questions[index].stem,
                   index: index + 1,
-                  onTap: () {onNavigate(index);},
+                  onTap: () {_onNavigate(index);},
                   userAnswer: widget._quiz.questions[index].userAnswer,
                 );
               },
@@ -71,12 +71,14 @@ class _QuizScreen extends State<QuizScreen> {
   }
 }
 
+/// Widget to show the summary of a question
 class QuizCard extends StatelessWidget {
   final String _stem;
   final int _index;
   final dynamic _userAnswer;
   final VoidCallback _onTap;
 
+  /// Initializes the widget
   const QuizCard({
     Key? key,
     required stem,
@@ -90,6 +92,7 @@ class QuizCard extends StatelessWidget {
     _userAnswer = userAnswer,
     super(key: key);
 
+  /// Defines the view
   @override
   Widget build(BuildContext context) {
     return CupertinoListTile(

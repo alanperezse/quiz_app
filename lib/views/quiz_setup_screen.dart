@@ -6,9 +6,11 @@ import 'package:quiz_app/views/quiz_screen.dart';
 
 import '../models/quiz.dart';
 
+/// Widget for displaying the setup before entering a quiz
 class QuizSetupScreen extends StatefulWidget {
   final QuestionPool _questionPool;
 
+  /// Initializes the widget
   const QuizSetupScreen({Key? key, required questionPool}) :
     _questionPool = questionPool,
     super(key: key);
@@ -17,10 +19,12 @@ class QuizSetupScreen extends StatefulWidget {
   State<QuizSetupScreen> createState() => _QuizSetupScreen();
 }
 
+/// State of QuizSetupScreen widget
 class _QuizSetupScreen extends State<QuizSetupScreen> {
   int? _numQuestions;
   late final List<int> _pickerOptions;
 
+  /// Helps reduce time for build
   @override
   void initState() {
     super.initState();
@@ -49,6 +53,7 @@ class _QuizSetupScreen extends State<QuizSetupScreen> {
     );
   }
 
+  /// Defines view
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -121,11 +126,13 @@ class _QuizSetupScreen extends State<QuizSetupScreen> {
   }
 }
 
+/// Widget for the prefixes to each option for a quiz
 class PrefixWidget extends StatelessWidget {
   final IconData _icon;
   final String _title;
   final Color _color;
 
+  /// Initializes the widget
   const PrefixWidget({
     super.key,
     required icon,
@@ -137,7 +144,7 @@ class PrefixWidget extends StatelessWidget {
     _color = color
   ;
 
-
+  /// Defines the view
   @override
   Widget build(BuildContext context) {
     return Row(

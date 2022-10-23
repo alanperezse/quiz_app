@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/models/quiz_result.dart';
 
+/// Widget for the results screen
 class ResultScreen extends StatelessWidget {
   final QuizResult _quizResult;
 
@@ -10,6 +11,7 @@ class ResultScreen extends StatelessWidget {
     _quizResult = quizResult,
     super(key: key);
 
+  /// Defines the view
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(

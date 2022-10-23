@@ -10,6 +10,7 @@ class HomeScreen extends StatelessWidget {
   final LoginData _loginData;
   const HomeScreen({super.key, required loginData}) : _loginData = loginData;
 
+  /// Defines the layout of the home screen
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -34,28 +35,35 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
+/// Class that represents the widget that shows the number of
+/// questions and the prompt to start a quiz
 class QuizInfoWidget extends StatefulWidget {
-  final LoginData loginData;
-  final api = APIUtil();
+  final LoginData _loginData;
+  final _api = APIUtil();
 
-  QuizInfoWidget({Key? key, required this.loginData}) : super(key: key);
+  ///  Initializes the object
+  QuizInfoWidget({Key? key, required loginData}) :
+    _loginData = loginData,
+    super(key: key);
 
   @override
   State<QuizInfoWidget> createState() => _QuizInfoWidget();
 }
 
+/// State of QuizInfoWidget
 class _QuizInfoWidget extends State<QuizInfoWidget> {
   late final Future<QuestionPool> _questionPool;
 
+  /// Initializes the api call to retrieve the questions
   @override
   void initState() {
     super.initState();
-    _questionPool = widget.api.getQuestions(widget.loginData);
+    _questionPool = widget._api.getQuestions(widget._loginData);
   }
 
+  /// Defines the view for the widget
   @override
-  Widget build(BuildContext context) {
-    
+  Widget build(BuildContext context) {    
     return Container(
       padding: const EdgeInsets.all(25),
       decoration: BoxDecoration(

@@ -11,6 +11,7 @@ class FillInQuestion extends Question{
   final String? _figureURL;
   final Iterable _answer;
   /// User provided answer.
+  @override
   String? userAnswer;
 
   /// Initializes the question. User answer

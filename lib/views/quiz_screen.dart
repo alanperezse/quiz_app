@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:cupertino_list_tile/cupertino_list_tile.dart';
+import 'package:quiz_app/models/quiz.dart';
 import 'package:quiz_app/views/question_screen.dart';
 import 'package:quiz_app/views/result_screen.dart';
 
 class QuizScreen extends StatefulWidget {
-  final _quiz;
+  final Quiz _quiz;
 
   const QuizScreen({Key? key, required quiz}) :
     _quiz = quiz,
@@ -73,7 +74,7 @@ class _QuizScreen extends State<QuizScreen> {
 class QuizCard extends StatelessWidget {
   final String _stem;
   final int _index;
-  final _userAnswer;
+  final dynamic _userAnswer;
   final VoidCallback _onTap;
 
   const QuizCard({

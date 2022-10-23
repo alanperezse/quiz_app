@@ -12,6 +12,7 @@ class MultipleChoiceQuestion extends Question {
   final List _choices;
   final int _answer;
   /// User provided answer.
+  @override
   int? userAnswer;
 
   /// Immutable list of strings detailing

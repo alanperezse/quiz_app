@@ -5,6 +5,10 @@ abstract class Question {
   /// The prompt to the question.
   String get stem;
   String? get figureURL;
+
+  /// Retrieves the answer provided by the user
+  get userAnswer;
+
   /// Returns a score indicating the performance
   /// of the user based on their answers.
   QuestionResult evaluate();

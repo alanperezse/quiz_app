@@ -9,5 +9,6 @@ abstract class Question {
   /// of the user based on their answers.
   QuestionResult evaluate();
 
+  /// Returns a deep copy of the current instance
   Question clone();
 }

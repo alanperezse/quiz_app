@@ -52,6 +52,7 @@ class FillInQuestion extends Question{
   @override
   String get stem => _stem;
 
+  /// Returns a deep copy of the current instance
   @override
   FillInQuestion clone() {
     return FillInQuestion(

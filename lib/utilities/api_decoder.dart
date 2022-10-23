@@ -5,7 +5,9 @@ import 'package:quiz_app/models/multiple_choice_question.dart';
 import 'package:quiz_app/models/question.dart';
 import '../models/login_response.dart';
 
+/// Utility class responsible for parsing the data from the server
 class APIDecoder {
+  /// Parses the response when authenticating a user.
   LoginResponse decodeAuthResponse(Response response) {
     var body = json.decode(response.body);
     if (body['response']) return LoginResponse(true, null);
@@ -13,6 +15,8 @@ class APIDecoder {
     return LoginResponse(body['response'], body['reason']);
   }
 
+  /// Parses the list of questions from a quiz in the server. Returns null
+  /// if the body could not be parsed.
   List<Question>? decodeQuiz(Response response) {
     var body = json.decode(response.body);
     if (!body['response']) {

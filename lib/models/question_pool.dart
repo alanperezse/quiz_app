@@ -10,6 +10,7 @@ class QuestionPool {
   /// Number of questions.
   int get length => questions.length;
 
+  /// Initializes the object.
   const QuestionPool([this.questions = const []]);
   
   /// Retrieves a random set of questions from

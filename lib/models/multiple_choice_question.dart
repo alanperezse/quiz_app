@@ -48,6 +48,7 @@ class MultipleChoiceQuestion extends Question {
   @override
   String get stem => _stem;
 
+  /// Returns a deep copy of the current instance
   @override
   MultipleChoiceQuestion clone() {
     return MultipleChoiceQuestion(

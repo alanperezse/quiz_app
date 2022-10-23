@@ -19,8 +19,8 @@ class Quiz {
   /// provided.
   Quiz(this._questions);
 
-  /// Returns the sum of the user performance for
-  /// the questions.
+  /// Returns the evaluation of the user's performance on the 
+  /// quiz
   QuizResult evaluate() {
     var score = Score(0, 0);
     List<QuestionResult> questionResults = [];

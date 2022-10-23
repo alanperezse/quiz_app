@@ -4,16 +4,17 @@ import 'package:quiz_app/models/question_pool.dart';
 import 'package:quiz_app/utilities/api_decoder.dart';
 import '../models/login_data.dart';
 
+/// Utility class responsible for communicating with the server
 class APIUtil {
-  static const String url = 'www.cs.utep.edu';
-  static const String authenticatePath = '/cheon/cs4381/homework/quiz/login.php';
-  static const String quizPath = '/cheon/cs4381/homework/quiz/get.php';
-  static const String figurePath = '/cheon/cs4381/homework/quiz/figure.php';
+  static const _url = 'www.cs.utep.edu';
+  static const _authenticatePath = '/cheon/cs4381/homework/quiz/login.php';
+  static const _quizPath = '/cheon/cs4381/homework/quiz/get.php';
+  static const _figurePath = '/cheon/cs4381/homework/quiz/figure.php';
   final _decoder = APIDecoder();
 
   void validateUser(LoginData loginData, Function onSuccess, Function onFailure) async {
     var response = await http.get(
-      Uri.https(url, authenticatePath, {
+      Uri.https(_url, _authenticatePath, {
         'user': loginData.username,
         'pin': loginData.pin
       }
@@ -26,6 +27,8 @@ class APIUtil {
     }
   }
 
+  /// Returns a question pool containing all the questions from all
+  /// the quizzes in the server
   Future<QuestionPool> getQuestions(LoginData loginData) async {
     List<Question> questions = [];
 
@@ -33,7 +36,7 @@ class APIUtil {
       var quizNum = _quizPostFix(i);
       try {
         var response = await http.get(
-          Uri.https(url, quizPath, {
+          Uri.https(_url, _quizPath, {
             'user': loginData.username,
             'pin': loginData.pin,
             'quiz': 'quiz$quizNum'
@@ -56,9 +59,11 @@ class APIUtil {
     return QuestionPool(questions);
   }
 
+  /// Returns the complete url to retrieve a figure, given the name of the
+  /// document in the server
   String getQuestionFigureURL(String figureURL) {
-    print('https://$url$figurePath?name=$figureURL');
-    return 'https://$url$figurePath?name=$figureURL';
+    print('https://$_url$_figurePath?name=$figureURL');
+    return 'https://$_url$_figurePath?name=$figureURL';
   }
 
   /// Given a number in the range [0-99] inclusive, it returns

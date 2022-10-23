@@ -33,14 +33,14 @@ class _QuestionScreen extends State<QuestionScreen> {
   }
 
   /// Helps the user go to the next question
-  void onNext() {
+  void _onNext() {
     setState(() {
       _index = _index! + 1;
     });
   }
 
   /// Helps the user go to the previous question
-  void onPrevious() {
+  void _onPrevious() {
     setState(() {
       _index = _index! - 1;
     });
@@ -87,7 +87,7 @@ class _QuestionScreen extends State<QuestionScreen> {
                   SizedBox(
                     width: double.infinity,
                     child: CupertinoButton.filled(
-                      onPressed: _index! >= widget._quiz.length - 1 ? null : onNext,
+                      onPressed: _index! >= widget._quiz.length - 1 ? null : _onNext,
                       child: const Text('Next'),
                     ),
                   ),
@@ -97,7 +97,7 @@ class _QuestionScreen extends State<QuestionScreen> {
                   SizedBox(
                     width: double.infinity,
                     child: CupertinoButton(
-                      onPressed: _index! <= 0 ? null : onPrevious,
+                      onPressed: _index! <= 0 ? null : _onPrevious,
                       child: const Text('Previous'),
                     ),
                   ),
@@ -132,17 +132,17 @@ class _FillInAnswer extends State<FillInAnswer> {
   @override
   void initState() {
     super.initState();
-    initTextController();
+    _initTextController();
   }
 
   @override
   void dispose() {
-    disposeTextController();
+    _disposeTextController();
     super.dispose();
   }
 
   /// Initializes the text controller for the input
-  void initTextController() {
+  void _initTextController() {
     _textController = TextEditingController(
       text: widget._question.userAnswer
     );
@@ -153,15 +153,15 @@ class _FillInAnswer extends State<FillInAnswer> {
   }
 
   /// Disposes of the text controller for the input
-  void disposeTextController() {
+  void _disposeTextController() {
     _textController!.dispose();
   }
 
   /// Defines view
   @override
   Widget build(BuildContext context) {
-    disposeTextController();
-    initTextController();
+    _disposeTextController();
+    _initTextController();
     return Row(
       children: [
         const Text(
@@ -199,7 +199,7 @@ class MultipleChoiceAnswer extends StatefulWidget {
 
 /// State of MultipleChoideAnswer widget
 class _MultipleChoiceAnswer extends State<MultipleChoiceAnswer> {
-  void onRadioChanged(int i) {
+  void _onRadioChanged(int i) {
     setState(() {
       widget._question.userAnswer = i;
     });
@@ -231,7 +231,7 @@ class _MultipleChoiceAnswer extends State<MultipleChoiceAnswer> {
               )
             ],
           ),
-          onPressed: () => onRadioChanged(i + 1)
+          onPressed: () => _onRadioChanged(i + 1)
         )
       );
     }
